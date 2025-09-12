@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 import './App.css';
 
+function BoonPanel({boonName}) {
+  
+  return (
+    <div className="BoonPanel">
+      <img src={`img/${boonName}.png`} />
+      
+    </div>
+  );
+}
+
 function App() {
+  const [boons, setBoons] = useState("")
+  const [isSubscribed, setSubscribed] = useState(false)
+
+  useEffect(() => {
+    if (!isSubscribed) {
+      setSubscribed(true);
+      var twitch = window.Twitch.ext;
+      twitch.listen("broadcast", function(target, contentType, message) {
+        setBoons(message);
+        console.log(message);
+      });
+    }
+  });
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {boons.split(" ").map((boon) => 
+          <li>
+            <BoonPanel boonName={boon} />      
+          </li>
+        )}
+      </ul>
+      
     </div>
   );
 }
