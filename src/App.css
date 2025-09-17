@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .App-logo {
@@ -22,6 +25,34 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.ElementImage {
+  width: 32px;
+  height: 32px;
+}
+
+.ElementPanel {
+  text-align: left;
+  color: white;
+  font-size: 2em;
+}
+
+.BoonDetail {
+  width: 500px;
+  height: 200px;
+  position: relative;
+  left: 100px;
+  background-color: aliceblue;
+  text-align: left;
+}
+
+.BoonDetail h1 {
+  margin: 0;
+}
+
+.BoonDetail p {
+  font-weight: bold;
 }
 
 .BoonImage {
