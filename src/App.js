@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import ReactHtmlParser from 'react-html-parser';
+
 
 import './App.css';
 
@@ -28,7 +30,7 @@ function ElementPanel({elementalData}) {
   return (
     <div className="ElementPanel">
       {elementalData != null ? elementalData.map((element) =>
-        <span><span>{element.value}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/>&nbsp;</span>
+        <span><span>{ReactHtmlParser(element.value)}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/>&nbsp;</span>
       )
       :
       emptyElementalData.map((element) =>
@@ -38,21 +40,21 @@ function ElementPanel({elementalData}) {
   )
 }
 
-function BoonDetail({boonName, boonDescription, boonEffects}) {
+function BoonDetail({boonDetails}) {
   return (
     <div className='BoonDetail'>
-      <h1>{boonName}</h1>
-      <p>{boonDescription}</p>
+      <h1>{boonDetails.name}</h1>
+      <p>{ReactHtmlParser(boonDetails.description)}</p>
       <ul>
-        {boonEffects.map((boonEffect, i) =>
-          <li key={`${boonName}Effect${i}`}>{boonEffect}</li>
+        {boonDetails.effects.map((boonEffect, i) =>
+          <li key={`${boonDetails.codeName}Effect${i}`}>{boonEffect.text} : {boonEffect.value}</li>
         )}
       </ul>
     </div>
   )
 }
 
-function BoonPanel({boonName, boonRarity="Common", boonDescription}) {
+function BoonPanel({boonDetails}) {
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -67,9 +69,9 @@ function BoonPanel({boonName, boonRarity="Common", boonDescription}) {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       className="BoonPanel"
-      style={!boonName.startsWith("Empty") ? {
+      style={!boonDetails.codeName.startsWith("Empty") ? {
         border: "10px solid transparent",
-        borderImageSource: `url("img/Frame${boonRarity}.png")`,
+        borderImageSource: `url("img/Frame${boonDetails.rarity}.png")`,
         borderImageSlice: "25",
         borderImageWidth: "25px",
         borderImageRepeat: "fill",
@@ -84,10 +86,10 @@ function BoonPanel({boonName, boonRarity="Common", boonDescription}) {
       }}>
       
         <SmartImage
-          src={`img/${boonName}.png`}
+          src={`img/${boonDetails.codeName}.png`}
           fallback="img/DefaultBoon.png"
         />
-        {isHovering && !boonName.startsWith("Empty") && <BoonDetail boonName={boonName} boonDescription={boonDescription} boonEffects={["Effect1", "Effect2"]}/>}
+        {isHovering && !boonDetails.codeName.startsWith("Empty") && <BoonDetail boonDetails={boonDetails}/>}
       </div>
   );
 }
@@ -116,47 +118,42 @@ function App() {
       <ul>
         {weaponData != null && weaponData.name != null ?
           <li key="WeaponKey">
-            <BoonPanel boonName={weaponData.name} boonRarity={weaponData.rarity} boonDescription={weaponData.description}/>
+            <BoonPanel boonDetails={weaponData}/>
           </li>
         : ""}
         {familiarData != null && familiarData.name != null ?
           <li key="FamiliarKey">
-            <BoonPanel boonName={familiarData.name}/>
+            <BoonPanel boonDetails={familiarData}/>
           </li>
         : ""}
         <li key="WeaponBoonKey">
           <BoonPanel
-            boonName={"weaponBoon" in allBoons ? allBoons.weaponBoon.name : "EmptyWeaponBoon"}
-            boonRarity={"weaponBoon" in allBoons ? allBoons.weaponBoon.rarity : ""}
+            boonDetails={"weaponBoon" in allBoons ? allBoons.weaponBoon : {codeName : "EmptyWeaponBoon", rarity : ""}}
           />
         </li>
         <li key="SpecialBoonKey">
           <BoonPanel
-            boonName={"specialBoon" in allBoons ? allBoons.specialBoon.name : "EmptySpecialBoon"}
-            boonRarity={"specialBoon" in allBoons ? allBoons.specialBoon.rarity : ""}
+            boonDetails={"specialBoon" in allBoons ? allBoons.specialBoon : {codeName : "EmptySpecialBoon", rarity : ""}}
           />
         </li>
         <li key="CastBoonKey">
           <BoonPanel
-            boonName={"castBoon" in allBoons ? allBoons.castBoon.name : "EmptyCastBoon"}
-            boonRarity={"castBoon" in allBoons ? allBoons.castBoon.rarity : ""}
+            boonDetails={"castBoon" in allBoons ? allBoons.castBoon : {codeName : "EmptyCastBoon", rarity : ""}}
           />
         </li>
         <li key="SprintBoonKey">
           <BoonPanel
-            boonName={"sprintBoon" in allBoons ? allBoons.sprintBoon.name : "EmptySprintBoon"}
-            boonRarity={"sprintBoon" in allBoons ? allBoons.sprintBoon.rarity : ""}
+            boonDetails={"sprintBoon" in allBoons ? allBoons.sprintBoon : {codeName : "EmptySprintBoon", rarity : ""}}
           />
         </li>
         <li key="ManaBoonKey">
           <BoonPanel
-            boonName={"manaBoon" in allBoons ? allBoons.manaBoon.name : "EmptyManaBoon"}
-            boonRarity={"manaBoon" in allBoons ? allBoons.manaBoon.rarity : ""}
+            boonDetails={"manaBoon" in allBoons ? allBoons.manaBoon : {codeName : "EmptyManaBoon", rarity : ""}}
           />
         </li>
         {allBoons.otherBoons != null ? allBoons.otherBoons.map((boon) => 
-          <li key={`${boon.name}Key`}>
-            <BoonPanel boonName={boon.name} boonRarity={boon.rarity} />      
+          <li key={`${boon.codeName}Key`}>
+            <BoonPanel boonDetails={boon}/>      
           </li>
         ) : ""}
       </ul>

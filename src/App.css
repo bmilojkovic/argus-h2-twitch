@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Ubuntu Light';
+  src: url('assets/fonts/ubuntu/Ubuntu-L.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf');
+  font-weight: bold;
+}
+
 .App {
   text-align: center;
   width: 100%;
@@ -39,20 +58,24 @@
 }
 
 .BoonDetail {
-  width: 500px;
-  height: 200px;
+  width: 674px;
+  height: 243px;
   position: relative;
   left: 100px;
-  background-color: aliceblue;
   text-align: left;
+  color: white;
+  background-image: url("assets/img/boon_detail_back.png");
+  background-repeat: no-repeat;
+  font-family: 'Alegreya Sans';
 }
 
 .BoonDetail h1 {
   margin: 0;
+  font-family: 'Ubuntu Light';
 }
 
-.BoonDetail p {
-  font-weight: bold;
+.BoonDetail .EffectValue {
+  color: green;
 }
 
 .BoonImage {
