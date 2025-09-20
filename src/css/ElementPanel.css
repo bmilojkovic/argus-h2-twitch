@@ -1,0 +1,26 @@
+
+.ElementPanel {
+  grid-column-start: 1;
+  grid-column-end: 8;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  text-align: left;
+  color: white;
+  font-size: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-left: 50px;
+  margin-right: 300px;
+}
+
+.ElementImage {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+}
+
+.ElementRow {
+  display: flex;
+  align-items: center;
+}

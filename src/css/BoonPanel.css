@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Ubuntu Light';
+  src: url('../assets/fonts/ubuntu/Ubuntu-L.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf');
+  font-weight: bold;
+}
+
+.BoonDetail {
+  width: 675px;
+  height: 225px;
+  position: relative;
+  left: 100px;
+  text-align: left;
+  color: white;
+  background-repeat: no-repeat;
+  font-family: 'Alegreya Sans';
+}
+
+.BoonDetail h1 {
+  margin: 0;
+  font-family: 'Ubuntu Light';
+  text-transform: capitalize;
+}
+
+.BoonDetail .EffectValue {
+  color: green;
+}
+
+.BoonImage {
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  z-index: -1;
+}
+
+.EmptyBoonImage {
+  width: 66px;
+  height: 66px;
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 4px;
+  z-index: -1;
+}
