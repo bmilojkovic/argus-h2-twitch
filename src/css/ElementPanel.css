@@ -10,8 +10,9 @@
   font-size: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  margin-left: 50px;
+  margin-left: 10px;
   margin-right: 300px;
+  height: 32px;
 }
 
 .ElementImage {
@@ -20,7 +21,8 @@
   vertical-align: middle;
 }
 
-.ElementRow {
+.ElementCell {
   display: flex;
   align-items: center;
+  height: 32px;
 }

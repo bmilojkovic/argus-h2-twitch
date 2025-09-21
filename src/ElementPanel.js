@@ -15,7 +15,7 @@ function ElementPanel({elementalData}) {
   return (
     <div className="ElementPanel">
       {elementalData != null ? elementalData.map((element) =>
-        <div className="ElementRow"><span>{ReactHtmlParser(element.value)}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/></div>
+        <div className="ElementCell"><span>{ReactHtmlParser(element.value)}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/></div>
       )
       :
       emptyElementalData.map((element) =>

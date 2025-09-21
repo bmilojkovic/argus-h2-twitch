@@ -1,17 +1,6 @@
 .App {
   text-align: center;
-  width: 1024px;
-  height: 686px;
   position: relative;
-  padding-top: 10px;
-}
-
-.AppBackgroundImage
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -2;
 }
 
 .App-logo {
@@ -40,13 +29,61 @@
   color: #61dafb;
 }
 
-.GridContainer {
+.TabList {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  top: 0;
+  left: 0;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  grid-auto-flow: column;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(10, 100px);
+}
 
-  margin-left: 50px;
+.TabbedContent {
+  position: relative;
+}
+
+.RunTabButton {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  width: 100px;
+  height: 50px;
+
+  background-color: transparent;
+  background-image: url("../assets/img/tab_button_back.png");
+  background-repeat: no-repeat;
+
+  transform: scale(0.8);
+}
+
+.PinTabButton {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  width: 100px;
+  height: 50px;
+
+  background-color: transparent;
+  background-image: url("../assets/img/tab_button_back.png");
+  background-repeat: no-repeat;
+
+  transform: scale(0.8);
+}
+
+.TabButtonImage {
+  width: 28px;
+  height: 28px;
+  margin-top: 10px;
+}
+
+.ActiveTabButton {
+  transform: scale(1);
 }
 
 @keyframes App-logo-spin {

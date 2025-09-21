@@ -5,15 +5,29 @@ import ReactHtmlParser from 'react-html-parser';
 import SmartImage from './SmartImage'
 import './css/BoonPanel.css'
 
-function BoonDetail({boonDetails}) {
+function BoonTitle({boonTitle, rarity}) {
+  const words = boonTitle.split(" ");
+  
   return (
-    <div className='BoonDetail' style={{backgroundImage: `url(img/${boonDetails.rarity}_detail_back.png)`}}>
-      <h1>{boonDetails.name}</h1>
+    <span className={`BoonTitle ${rarity}Text`}>{words.map(word => 
+      <>
+        <span className="TitleFirstLetter">{word.substring(0, 1)}</span>
+        <span className="TitleOtherLetters">{word.substring(1, word.length)}</span>
+        &nbsp;
+      </>
+    )}</span>
+  )
+}
+
+function BoonDetail({boonDetails, lowPosition=false}) {
+  return (
+    <div className={lowPosition ? "BoonDetail BoonDetailLow" : "BoonDetail"} style={{backgroundImage: `url(img/${boonDetails.rarity}_detail_back.png)`}}>
+      <BoonTitle boonTitle={boonDetails.name} rarity={boonDetails.rarity} />
       <p>{ReactHtmlParser(boonDetails.description)}</p>
       {boonDetails.effects != null ?
         <ul>
             {boonDetails.effects.map((boonEffect, i) =>
-            <li key={`${boonDetails.codeName}Effect${i}`}>{boonEffect.text} : {boonEffect.value}</li>
+            <li key={`${boonDetails.codeName}Effect${i}`}>{boonEffect.text} <span className="EffectTextColor">{boonEffect.value}</span></li>
             )}
         </ul>
         :
@@ -22,7 +36,7 @@ function BoonDetail({boonDetails}) {
   )
 }
 
-function BoonPanel({boonDetails}) {
+function BoonPanel({boonDetails, lowPosition=false}) {
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -50,7 +64,6 @@ function BoonPanel({boonDetails}) {
         position: "relative",
         width: "66px",
         height: "66px",
-        left: "5px"
       }}>
       
         <SmartImage
@@ -58,7 +71,7 @@ function BoonPanel({boonDetails}) {
           fallback="img/DefaultBoon.png"
           className={!boonDetails.codeName.startsWith("Empty") ? "BoonImage" : "EmptyBoonImage"}
         />
-        {isHovering && !boonDetails.codeName.startsWith("Empty") && <BoonDetail boonDetails={boonDetails}/>}
+        {isHovering && !boonDetails.codeName.startsWith("Empty") && <BoonDetail boonDetails={boonDetails} lowPosition={lowPosition}/>}
       </div>
   );
 }

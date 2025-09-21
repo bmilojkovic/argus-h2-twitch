@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 import './css/App.css';
-import ElementPanel from './ElementPanel'
-import BoonPanel from './BoonPanel'
-import KeepsakePanel from './KeepsakePanel'
+import RunPanel from './RunPanel'
 
 function App() {
+  const [activeTab, setActiveTab] = useState('runTab');
+
+  const [allBoons, setAllBoons] = useState({})
   const [weaponData, setWeaponData] = useState({})
   const [familiarData, setFamiliarData] = useState({})
-  const [allBoons, setAllBoons] = useState({})
   const [elementalData, setElementalData] = useState(null)
   const [keepsakeData, setKeepsakeData] = useState(null)
 
@@ -25,39 +25,28 @@ function App() {
       console.log(message);
     });
   }, []);
+
+  const handleTabClick = (tabId) => {
+    setActiveTab(tabId);
+  };
   
   return (
     <div className="App">
-      <img src="img/main_background.png" className="AppBackgroundImage"/>
-      <div className="GridContainer">
-        <ElementPanel elementalData={elementalData} />
-        {weaponData != null && weaponData.name != null ?
-          <BoonPanel boonDetails={weaponData}/>
-        : ""}
-        {familiarData != null && familiarData.name != null ?
-          <BoonPanel boonDetails={familiarData}/>
-        : ""}
-        <BoonPanel
-          boonDetails={"weaponBoon" in allBoons ? allBoons.weaponBoon : {codeName : "EmptyWeaponBoon", rarity : ""}}
-        />
-        <BoonPanel
-          boonDetails={"specialBoon" in allBoons ? allBoons.specialBoon : {codeName : "EmptySpecialBoon", rarity : ""}}
-        />
-        <BoonPanel
-          boonDetails={"castBoon" in allBoons ? allBoons.castBoon : {codeName : "EmptyCastBoon", rarity : ""}}
-        />
-        <BoonPanel
-          boonDetails={"sprintBoon" in allBoons ? allBoons.sprintBoon : {codeName : "EmptySprintBoon", rarity : ""}}
-        />
-        <BoonPanel
-          boonDetails={"manaBoon" in allBoons ? allBoons.manaBoon : {codeName : "EmptyManaBoon", rarity : ""}}
-        />
-        {allBoons.otherBoons != null ? allBoons.otherBoons.map((boon) => 
-          <BoonPanel boonDetails={boon}/>      
-        ) : ""}
-        {keepsakeData != null ? <KeepsakePanel keepsakeData={keepsakeData} /> : ""}
+      <div className="TabList">
+        <div className={activeTab === 'runTab' ? 'RunTabButton ActiveTabButton' : 'RunTabButton'}
+             onClick={() => handleTabClick('runTab')}>
+          <img src="img/boon_tab_icon.png" className="TabButtonImage"/>
+        </div>
+
+        <div className={activeTab === 'pinTab' ? 'PinTabButton ActiveTabButton' : 'PinTabButton'}
+             onClick={() => handleTabClick('pinTab')}>
+          <img src="img/pin_tab_icon.png" className="TabButtonImage"/>
+        </div>
       </div>
-      
+      <div className="TabbedContent">
+        {activeTab === "runTab" && <RunPanel allBoons={allBoons} weaponData={weaponData} familiarData={familiarData} elementalData={elementalData} keepsakeData={keepsakeData}/>}
+        {activeTab === "pinTab" && <div >pin tab</div>}
+      </div>
     </div>
   );
 }
