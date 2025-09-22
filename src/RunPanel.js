@@ -3,9 +3,9 @@ import "./css/RunPanel.css"
 
 import ElementPanel from './ElementPanel'
 import BoonPanel from './BoonPanel'
-import KeepsakePanel from './KeepsakePanel'
+import ExtraPanel from './ExtraPanel'
 
-function RunPanel({allBoons, weaponData, familiarData, elementalData, keepsakeData}) {
+function RunPanel({allBoons, weaponData, familiarData, elementalData, extraData}) {
     return (
         <div className="RunPanel">
             <div className="GridContainer">
@@ -37,7 +37,7 @@ function RunPanel({allBoons, weaponData, familiarData, elementalData, keepsakeDa
                 ) : ""}
                 
             </div>
-            {keepsakeData != null ? <KeepsakePanel keepsakeData={keepsakeData} /> : ""}
+            {extraData != null ? <ExtraPanel extraData={extraData} /> : ""}
       </div>
     )
 }

@@ -11,7 +11,7 @@ function App() {
   const [weaponData, setWeaponData] = useState({})
   const [familiarData, setFamiliarData] = useState({})
   const [elementalData, setElementalData] = useState(null)
-  const [keepsakeData, setKeepsakeData] = useState(null)
+  const [extraData, setExtraData] = useState(null)
 
   useEffect(() => {
     var twitch = window.Twitch.ext;
@@ -20,7 +20,7 @@ function App() {
       setAllBoons(runData.boonData);
       setWeaponData(runData.weaponData);
       setFamiliarData(runData.familiarData);
-      setKeepsakeData(runData.keepsakeData);
+      setExtraData(runData.extraData);
       setElementalData(runData.elementalData);
       console.log(message);
     });
@@ -44,7 +44,7 @@ function App() {
         </div>
       </div>
       <div className="TabbedContent">
-        {activeTab === "runTab" && <RunPanel allBoons={allBoons} weaponData={weaponData} familiarData={familiarData} elementalData={elementalData} keepsakeData={keepsakeData}/>}
+        {activeTab === "runTab" && <RunPanel allBoons={allBoons} weaponData={weaponData} familiarData={familiarData} elementalData={elementalData} extraData={extraData}/>}
         {activeTab === "pinTab" && <div >pin tab</div>}
       </div>
     </div>

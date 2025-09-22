@@ -1,6 +1,9 @@
 .App {
   text-align: center;
   position: relative;
+
+  width: 1024px;
+  height: 768px;
 }
 
 .App-logo {
@@ -42,6 +45,8 @@
 
 .TabbedContent {
   position: relative;
+  width: 100%;
+  height: 718px;
 }
 
 .RunTabButton {
