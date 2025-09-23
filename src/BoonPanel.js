@@ -3,21 +3,8 @@ import { useState } from 'react';
 
 import ReactHtmlParser from 'react-html-parser';
 import SmartImage from './SmartImage'
+import BoonTitle from './BoonTitle'
 import './css/BoonPanel.css'
-
-function BoonTitle({boonTitle, rarity}) {
-  const words = boonTitle.split(" ");
-  
-  return (
-    <span className={`BoonTitle ${rarity}Text`}>{words.map(word => 
-      <>
-        <span className="TitleFirstLetter">{word.substring(0, 1)}</span>
-        <span className="TitleOtherLetters">{word.substring(1, word.length)}</span>
-        &nbsp;
-      </>
-    )}</span>
-  )
-}
 
 function BoonDetail({boonDetails, lowPosition=false}) {
   return (
@@ -27,7 +14,7 @@ function BoonDetail({boonDetails, lowPosition=false}) {
       {boonDetails.effects != null ?
         <ul>
             {boonDetails.effects.map((boonEffect, i) =>
-            <li key={`${boonDetails.codeName}Effect${i}`}>{boonEffect.text} <span className="EffectTextColor">{boonEffect.value}</span></li>
+            <li key={`${boonDetails.codeName}Effect${i}`}>{ReactHtmlParser(boonEffect.text)} <span className="EffectTextColor">{ReactHtmlParser(boonEffect.value)}</span></li>
             )}
         </ul>
         :

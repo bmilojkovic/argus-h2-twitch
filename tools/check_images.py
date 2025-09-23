@@ -64,6 +64,7 @@ def print_images_and_sizes():
     for img_file in os.listdir(image_path):
         if (args["type"] != None) and (not img_file.endswith(args["type"])):
             continue
+        
         img = Image.open(image_path + img_file)
         print(img_file + ": " + str(img.size))
     return

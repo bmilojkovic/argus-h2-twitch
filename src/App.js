@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import './css/App.css';
 import RunPanel from './RunPanel'
+import PinPanel from './PinPanel'
 
 function App() {
   const [activeTab, setActiveTab] = useState('runTab');
@@ -12,6 +13,7 @@ function App() {
   const [familiarData, setFamiliarData] = useState({})
   const [elementalData, setElementalData] = useState(null)
   const [extraData, setExtraData] = useState(null)
+  const [pinBoons, setPinBoons] = useState([])
 
   useEffect(() => {
     var twitch = window.Twitch.ext;
@@ -22,6 +24,7 @@ function App() {
       setFamiliarData(runData.familiarData);
       setExtraData(runData.extraData);
       setElementalData(runData.elementalData);
+      setPinBoons(runData.pinBoons);
       console.log(message);
     });
   }, []);
@@ -32,6 +35,7 @@ function App() {
   
   return (
     <div className="App">
+      <div className="AppBackground" />
       <div className="TabList">
         <div className={activeTab === 'runTab' ? 'RunTabButton ActiveTabButton' : 'RunTabButton'}
              onClick={() => handleTabClick('runTab')}>
@@ -45,7 +49,7 @@ function App() {
       </div>
       <div className="TabbedContent">
         {activeTab === "runTab" && <RunPanel allBoons={allBoons} weaponData={weaponData} familiarData={familiarData} elementalData={elementalData} extraData={extraData}/>}
-        {activeTab === "pinTab" && <div >pin tab</div>}
+        {activeTab === "pinTab" && <PinPanel pinBoons={pinBoons}/>}
       </div>
     </div>
   );

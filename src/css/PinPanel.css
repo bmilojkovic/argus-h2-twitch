@@ -1,25 +1,33 @@
 
-.RunPanel {
+.PinPanel {
   padding-top: 10px;
   width: 1024px;
   height: 712px;
 }
 
-.RunPanel .GridContainer {
+.PinPanel .GridContainer {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(8, auto);
-  grid-auto-flow: column;
 
   width: 65%;
   height: 90%;
   margin-left: 2%;
+  padding-top: 20px;
 }
 
-.RunPanel .RunPanelBackgroundImage {
+.PinPanel .PinPanelBackgroundImage {
   position: absolute;
   top: 0;
   left: 0;
   z-index: -2;
   height: 655px;
+}
+
+.PinPanel .PinPanelTitle {
+  color: white;
+  grid-column-start: 1;
+  grid-column-end: 8;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }

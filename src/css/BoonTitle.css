@@ -1,0 +1,48 @@
+
+@font-face {
+  font-family: 'Ubuntu Bold';
+  src: url('../assets/fonts/ubuntu/Ubuntu-B.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.BoonTitle {
+  font-family: 'Ubuntu Bold';
+  text-transform: uppercase;
+}
+
+.CommonText {
+  color: #ffffff;
+}
+
+.RareText {
+  color: #006eff;
+}
+
+.EpicText {
+  color: #b72ee0;
+}
+
+.HeroicText {
+  color: #ff5555;
+}
+
+.LegendaryText {
+  color: orange;
+}
+
+.InfusionText {
+  color: #e84acd;
+}
+
+.DuoText {
+  color: greenyellow;
+}
+
+.TitleFirstLetter {
+  font-size: 2em;
+}
+
+.TitleOtherLetters {
+  font-size: 1.5em;
+}

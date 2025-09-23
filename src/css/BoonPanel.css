@@ -24,47 +24,6 @@
   font-weight: bold;
 }
 
-.BoonTitle {
-  font-family: 'Ubuntu Bold';
-  text-transform: uppercase;
-}
-
-.BoonDetail .CommonText {
-  color: #ffffff;
-}
-
-.BoonDetail .RareText {
-  color: #006eff;
-}
-
-.BoonDetail .EpicText {
-  color: #b72ee0;
-}
-
-.BoonDetail .HeroicText {
-  color: #ff5555;
-}
-
-.BoonDetail .LegendaryText {
-  color: orange;
-}
-
-.BoonDetail .InfusionText {
-  color: #e84acd;
-}
-
-.BoonDetail .DuoText {
-  color: greenyellow;
-}
-
-.TitleFirstLetter {
-  font-size: 2em;
-}
-
-.TitleOtherLetters {
-  font-size: 1.5em;
-}
-
 .EffectTextColor {
   color: lightgreen;
   font-weight: bold;
@@ -108,7 +67,7 @@
   height: 66px;
   display: block;
   position: absolute;
-  top: 8px;
+  top: 2px;
   left: 9px;
   z-index: -1;
 }
