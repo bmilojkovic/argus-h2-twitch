@@ -1,31 +1,49 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useImmerReducer } from "use-immer";
 
 import './css/App.css';
 import RunPanel from './RunPanel'
 import PinPanel from './PinPanel'
 
+import ArgusReducer from './Reducer';
+
 function App() {
+  
   const [activeTab, setActiveTab] = useState('runTab');
 
-  const [allBoons, setAllBoons] = useState({})
-  const [weaponData, setWeaponData] = useState({})
-  const [familiarData, setFamiliarData] = useState({})
-  const [elementalData, setElementalData] = useState(null)
-  const [extraData, setExtraData] = useState(null)
-  const [pinBoons, setPinBoons] = useState([])
+  const [state, dispatch] = useImmerReducer(ArgusReducer, {
+    allBoons: {},
+    weaponData: null,
+    familiarData: null,
+    elementalData: null,
+    extraData: null,
+    pinBoons: null
+  });
 
   useEffect(() => {
     var twitch = window.Twitch.ext;
     twitch.listen("broadcast", function(target, contentType, message) {
       var runData = JSON.parse(message);
-      setAllBoons(runData.boonData);
-      setWeaponData(runData.weaponData);
-      setFamiliarData(runData.familiarData);
-      setExtraData(runData.extraData);
-      setElementalData(runData.elementalData);
-      setPinBoons(runData.pinBoons);
-      console.log(message);
+      
+      if (runData.boonData != null) {
+        dispatch({type: "allBoons", data: runData.boonData});
+      }
+      if (runData.weaponData != null) {
+        dispatch({type: "weapon", data: runData.weaponData});
+      }
+      if (runData.familiarData != null) {
+        dispatch({type: "familiar", data: runData.familiarData});
+      }
+      if (runData.extraData != null) {
+        dispatch({type: "extra", data: runData.extraData});
+      }
+      if (runData.elementalData != null) {
+        dispatch({type: "elemental", data: runData.elementalData});
+      }
+      if (runData.pinData != null) {
+        dispatch({type: "pin", data: runData.pinData});
+      }
     });
   }, []);
 
@@ -48,8 +66,8 @@ function App() {
         </div>
       </div>
       <div className="TabbedContent">
-        {activeTab === "runTab" && <RunPanel allBoons={allBoons} weaponData={weaponData} familiarData={familiarData} elementalData={elementalData} extraData={extraData}/>}
-        {activeTab === "pinTab" && <PinPanel pinBoons={pinBoons}/>}
+        {activeTab === "runTab" && <RunPanel allBoons={state.allBoons} weaponData={state.weaponData} familiarData={state.familiarData} elementalData={state.elementalData} extraData={state.extraData}/>}
+        {activeTab === "pinTab" && <PinPanel pinBoons={state.pinData}/>}
       </div>
     </div>
   );

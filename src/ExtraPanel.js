@@ -6,9 +6,9 @@ import BoonPanel from './BoonPanel';
 function ExtraPanel({extraData}) {
   return (
     <div className="ExtraPanel">
-      {extraData.map(extraItem =>
+      {extraData != null ? extraData.map(extraItem =>
         <BoonPanel boonDetails={extraItem} lowPosition={true} />
-      )}
+      ) : ""}
     </div>
   )
 }
