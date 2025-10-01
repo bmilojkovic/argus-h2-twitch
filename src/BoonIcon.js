@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import SmartImage from './SmartImage'
 import BoonTitle from './BoonTitle'
-import './css/BoonPanel.css'
+import './css/BoonIcon.css'
 
 function BoonDetail({boonDetails, lowPosition=false}) {
   return (
@@ -23,7 +23,7 @@ function BoonDetail({boonDetails, lowPosition=false}) {
   )
 }
 
-function BoonPanel({boonDetails, lowPosition=false}) {
+function BoonIcon({boonDetails, lowPosition=false, isKeepsake=false}) {
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -37,21 +37,14 @@ function BoonPanel({boonDetails, lowPosition=false}) {
     <div
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      className="BoonPanel"
-      style={!boonDetails.codeName.startsWith("Empty") ? {
-        border: "10px solid transparent",
-        borderImageSource: `url("img/Frame${boonDetails.rarity}.png")`,
-        borderImageSlice: "25",
-        borderImageWidth: "25px",
-        borderImageRepeat: "fill",
-        position: "relative",
-        width: "64px",
-        height: "64px",
-      } : {
-        position: "relative",
-        width: "66px",
-        height: "66px",
-      }}>
+      className={!boonDetails.codeName.startsWith("Empty") ? "BoonIcon" : "EmptyBoonIcon"}
+      style={isKeepsake ?
+        {borderImageSource: `url("img/KeepsakeFrame${boonDetails.rarity}.png")`}
+        :
+        {borderImageSource: `url("img/Frame${boonDetails.rarity}.png")`}
+      }
+      
+      >
       
         <SmartImage
           src={`img/${boonDetails.codeName}.png`}
@@ -63,4 +56,4 @@ function BoonPanel({boonDetails, lowPosition=false}) {
   );
 }
 
-export default BoonPanel;
+export default BoonIcon;

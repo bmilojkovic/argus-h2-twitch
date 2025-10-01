@@ -52,13 +52,29 @@
   transform: translateY(-80px)
 }
 
+.BoonIcon {
+  border: 10px solid transparent;
+  border-image-slice: 25;
+  border-image-width: 20px;
+  border-image-repeat: fill;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.EmptyBoonIcon {
+  position: relative;
+  width: 66px;
+  height: 66px;
+}
+
 .BoonImage {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   display: block;
   position: absolute;
-  top: 7px;
-  left: 7px;
+  top: 2px;
+  left: 2px;
   z-index: -1;
 }
 

@@ -1,7 +1,7 @@
 
 import './css/PinPanel.css'
 
-import BoonPanel from './BoonPanel'
+import BoonIcon from './BoonIcon'
 
 function PinPanel({pinBoons}) {
     return (
@@ -10,7 +10,7 @@ function PinPanel({pinBoons}) {
                 <h1 className="PinPanelTitle">These are the boons that we are going for.</h1>
                 <img src="img/main_background.png" className="PinPanelBackgroundImage"/>
                 {pinBoons != null ? pinBoons.map((boon) => 
-                    <BoonPanel boonDetails={boon}/>      
+                    <BoonIcon key={boon.codeName} boonDetails={boon}/>      
                 ) : ""}
                 
             </div>

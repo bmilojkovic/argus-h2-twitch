@@ -2,7 +2,7 @@
 import "./css/RunPanel.css"
 
 import ElementPanel from './ElementPanel'
-import BoonPanel from './BoonPanel'
+import BoonIcon from './BoonIcon'
 import ExtraPanel from './ExtraPanel'
 
 function RunPanel({allBoons, weaponData, familiarData, elementalData, extraData}) {
@@ -12,28 +12,28 @@ function RunPanel({allBoons, weaponData, familiarData, elementalData, extraData}
                 <img src="img/main_background.png" className="RunPanelBackgroundImage"/>
                 <ElementPanel elementalData={elementalData} />
                 {weaponData != null && weaponData.name != null ?
-                    <BoonPanel boonDetails={weaponData}/>
+                    <BoonIcon boonDetails={weaponData}/>
                     : <div />}
                 {familiarData != null && familiarData.name != null ?
-                    <BoonPanel boonDetails={familiarData}/>
+                    <BoonIcon boonDetails={familiarData}/>
                     : <div />}
-                <BoonPanel
+                <BoonIcon
                     boonDetails={"weaponBoon" in allBoons ? allBoons.weaponBoon : {codeName : "EmptyWeaponBoon", rarity : ""}}
                 />
-                <BoonPanel
+                <BoonIcon
                     boonDetails={"specialBoon" in allBoons ? allBoons.specialBoon : {codeName : "EmptySpecialBoon", rarity : ""}}
                 />
-                <BoonPanel
+                <BoonIcon
                     boonDetails={"castBoon" in allBoons ? allBoons.castBoon : {codeName : "EmptyCastBoon", rarity : ""}}
                 />
-                <BoonPanel
+                <BoonIcon
                     boonDetails={"sprintBoon" in allBoons ? allBoons.sprintBoon : {codeName : "EmptySprintBoon", rarity : ""}}
                 />
-                <BoonPanel
+                <BoonIcon
                     boonDetails={"manaBoon" in allBoons ? allBoons.manaBoon : {codeName : "EmptyManaBoon", rarity : ""}}
                 />
                 {allBoons.otherBoons != null ? allBoons.otherBoons.map((boon) => 
-                    <BoonPanel boonDetails={boon}/>      
+                    <BoonIcon key={boon.codeName} boonDetails={boon}/>      
                 ) : ""}
                 
             </div>

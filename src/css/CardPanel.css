@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Ubuntu Light';
+  src: url('../assets/fonts/ubuntu/Ubuntu-L.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Bold';
+  src: url('../assets/fonts/ubuntu/Ubuntu-B.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf');
+  font-weight: bold;
+}
+
+.EffectTextColor {
+  color: lightgreen;
+  font-weight: bold;
+}
+
+.CardDetail {
+  width: 675px;
+  height: 225px;
+  position: relative;
+  left: 100px;
+  top: -80px;
+  text-align: left;
+  color: white;
+  background-repeat: no-repeat;
+  font-family: 'Ubuntu Light';
+  z-index: 3;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.CardImage {
+  width: 90px;
+  height: 140px;
+  display: block;
+  position: relative;
+  z-index: -1;
+}
+
+.CardPanel {
+  position: relative;
+  width: 90px;
+  height: 140px;
+}

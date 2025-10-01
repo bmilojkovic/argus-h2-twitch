@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'Ubuntu Light';
+  src: url('../assets/fonts/ubuntu/Ubuntu-L.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Bold';
+  src: url('../assets/fonts/ubuntu/Ubuntu-B.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf');
+  font-weight: bold;
+}
+
+.EffectTextColor {
+  color: lightgreen;
+  font-weight: bold;
+}
+
+.VowDetail {
+  width: 675px;
+  height: 225px;
+  position: relative;
+  left: 100px;
+  top: -80px;
+  text-align: left;
+  color: white;
+  background-image: url("../assets/img/Common_detail_back.png");
+  background-repeat: no-repeat;
+  font-family: 'Ubuntu Light';
+  z-index: 3;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.VowImage {
+  width: 88px;
+  height: 88px;
+  display: block;
+  position: relative;
+  left: 42px;
+  top: 10px;
+}
+
+.VowIcon {
+  position: relative;
+  width: 172px;
+  height: 116px;
+  background-image: url('../assets/img/vow_icon_back.png');
+}

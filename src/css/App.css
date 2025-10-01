@@ -72,12 +72,11 @@
 
   background-color: transparent;
   background-image: url("../assets/img/tab_button_back.png");
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-
-  transform: scale(0.8);
 }
 
-.PinTabButton {
+.ArcanaTabButton {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -88,9 +87,38 @@
 
   background-color: transparent;
   background-image: url("../assets/img/tab_button_back.png");
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+}
 
-  transform: scale(0.8);
+.VowTabButton {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  width: 100px;
+  height: 50px;
+
+  background-color: transparent;
+  background-image: url("../assets/img/tab_button_back.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.PinTabButton {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  width: 100px;
+  height: 50px;
+
+  background-color: transparent;
+  background-image: url("../assets/img/tab_button_back.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .TabButtonImage {
@@ -100,7 +128,7 @@
 }
 
 .ActiveTabButton {
-  transform: scale(1);
+  background-image: url("../assets/img/tab_button_back_active.png");
 }
 
 @keyframes App-logo-spin {

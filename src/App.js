@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { useImmerReducer } from "use-immer";
 
 import './css/App.css';
-import RunPanel from './RunPanel'
-import PinPanel from './PinPanel'
+import RunPanel from './RunPanel';
+import PinPanel from './PinPanel';
+import ArcanaPanel from './ArcanaPanel';
+import VowPanel from './VowPanel';
 
 import ArgusReducer from './Reducer';
 
@@ -18,7 +20,9 @@ function App() {
     familiarData: null,
     elementalData: [],
     extraData: null,
-    pinBoons: null
+    pinBoons: null,
+    arcanaData: null,
+    vowData: null
   });
 
   var messageHistory = [];
@@ -26,6 +30,8 @@ function App() {
   function updateState(fullMessage) {
     var runData = JSON.parse(fullMessage);
     
+    //console.log(runData);
+
     if (runData.boonData != null) {
       dispatch({type: "allBoons", data: runData.boonData});
     }
@@ -43,6 +49,12 @@ function App() {
     }
     if (runData.pinData != null) {
       dispatch({type: "pin", data: runData.pinData});
+    }
+    if (runData.vowData != null) {
+      dispatch({type: "vows", data: runData.vowData});
+    }
+    if (runData.arcanaData != null) {
+      dispatch({type: "arcana", data: runData.arcanaData});
     }
   }
 
@@ -127,8 +139,6 @@ function App() {
     if (totalParts == null) {
       return;
     }
-    
-    console.log("nonce: " + nonce + ", part index: " + partInd + ", total parts:" + totalParts);
 
     var partData = message.substring(totalPartsEnd+1);
 
@@ -154,6 +164,16 @@ function App() {
           <img src="img/boon_tab_icon.png" className="TabButtonImage"/>
         </div>
 
+        <div className={activeTab === 'arcanaTab' ? 'ArcanaTabButton ActiveTabButton' : 'ArcanaTabButton'}
+             onClick={() => handleTabClick('arcanaTab')}>
+          <img src="img/arcana_tab_icon.png" className="TabButtonImage"/>
+        </div>
+
+        <div className={activeTab === 'vowTab' ? 'VowTabButton ActiveTabButton' : 'VowTabButton'}
+             onClick={() => handleTabClick('vowTab')}>
+          <img src="img/vow_tab_icon.png" className="TabButtonImage"/>
+        </div>
+
         <div className={activeTab === 'pinTab' ? 'PinTabButton ActiveTabButton' : 'PinTabButton'}
              onClick={() => handleTabClick('pinTab')}>
           <img src="img/pin_tab_icon.png" className="TabButtonImage"/>
@@ -161,6 +181,8 @@ function App() {
       </div>
       <div className="TabbedContent">
         {activeTab === "runTab" && <RunPanel allBoons={state.allBoons} weaponData={state.weaponData} familiarData={state.familiarData} elementalData={state.elementalData} extraData={state.extraData}/>}
+        {activeTab === "arcanaTab" && <ArcanaPanel arcanaData={state.arcanaData}/>}
+        {activeTab === "vowTab" && <VowPanel vowData={state.vowData}/>}
         {activeTab === "pinTab" && <PinPanel pinBoons={state.pinData}/>}
       </div>
     </div>

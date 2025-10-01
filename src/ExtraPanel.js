@@ -1,13 +1,17 @@
 
 import './css/ExtraPanel.css'
 
-import BoonPanel from './BoonPanel';
+import BoonIcon from './BoonIcon';
 
 function ExtraPanel({extraData}) {
+  console.log(extraData);
+
   return (
     <div className="ExtraPanel">
       {extraData != null ? extraData.map(extraItem =>
-        <BoonPanel boonDetails={extraItem} lowPosition={true} />
+        <BoonIcon key={extraItem.codeName} boonDetails={extraItem} lowPosition={true} isKeepsake={
+          extraItem.extraType != null && extraItem.extraType == "Keepsake"
+        } />
       ) : ""}
     </div>
   )

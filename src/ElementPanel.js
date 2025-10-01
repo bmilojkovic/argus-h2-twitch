@@ -15,11 +15,15 @@ function ElementPanel({elementalData}) {
   return (
     <div className="ElementPanel">
       {elementalData != null ? elementalData.map((element) =>
-        <div className="ElementCell"><span>{ReactHtmlParser(element.value)}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/></div>
+        <div key={element.name} className="ElementCell">
+          <span>{ReactHtmlParser(element.value)}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/>
+        </div>
       )
       :
       emptyElementalData.map((element) =>
-        <span><span>{element.value}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/>&nbsp;</span>
+        <span key={element.name}>
+          <span>{element.value}</span><img className="ElementImage" src={`img/Element_${element.name}.png`}/>&nbsp;
+        </span>
       )}
     </div>
   )

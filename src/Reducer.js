@@ -19,6 +19,12 @@ function ArgusReducer(draft, action) {
         case "pin":
             draft.pinData = action.data;
             break;
+        case "vows":
+            draft.vowData = action.data;
+            break;
+        case "arcana":
+            draft.arcanaData = action.data;
+            break;
     }
 
 }
