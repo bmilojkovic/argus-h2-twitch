@@ -4,8 +4,7 @@ import './css/ExtraPanel.css'
 import BoonIcon from './BoonIcon';
 
 function ExtraPanel({extraData}) {
-  console.log(extraData);
-
+  
   return (
     <div className="ExtraPanel">
       {extraData != null ? extraData.map(extraItem =>

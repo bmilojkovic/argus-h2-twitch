@@ -29,8 +29,8 @@ function App() {
 
   function updateState(fullMessage) {
     var runData = JSON.parse(fullMessage);
-    
-    //console.log(runData);
+
+    //console.log(fullMessage);
 
     if (runData.boonData != null) {
       dispatch({type: "allBoons", data: runData.boonData});
@@ -143,7 +143,6 @@ function App() {
     var partData = message.substring(totalPartsEnd+1);
 
     addMessagePart(nonce, partInd, totalParts, partData);
-    
   }
 
   useEffect(() => {
