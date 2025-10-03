@@ -17,6 +17,10 @@ function ArgusReducer(draft, action) {
             draft.elementalData = action.data;
             break;
         case "pin":
+            if (action.data.length > 3) {
+                console.log("Got more than three pins. Ignoring the tail end.");
+                action.data = action.data.slice(0, 3);
+            }
             draft.pinData = action.data;
             break;
         case "vows":

@@ -1,18 +1,17 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState } from "react";
+import { useEffect } from "react";
 import { useImmerReducer } from "use-immer";
 
-import './css/App.css';
-import RunPanel from './RunPanel';
-import PinPanel from './PinPanel';
-import ArcanaPanel from './ArcanaPanel';
-import VowPanel from './VowPanel';
+import "./css/App.css";
+import RunPanel from "./RunPanel";
+import PinPanel from "./PinPanel";
+import ArcanaPanel from "./ArcanaPanel";
+import VowPanel from "./VowPanel";
 
-import ArgusReducer from './Reducer';
+import ArgusReducer from "./Reducer";
 
 function App() {
-  
-  const [activeTab, setActiveTab] = useState('runTab');
+  const [activeTab, setActiveTab] = useState("runTab");
 
   const [state, dispatch] = useImmerReducer(ArgusReducer, {
     allBoons: {},
@@ -20,9 +19,9 @@ function App() {
     familiarData: null,
     elementalData: [],
     extraData: null,
-    pinBoons: null,
+    pinData: null,
     arcanaData: null,
-    vowData: null
+    vowData: null,
   });
 
   var messageHistory = [];
@@ -33,35 +32,35 @@ function App() {
     //console.log(fullMessage);
 
     if (runData.boonData != null) {
-      dispatch({type: "allBoons", data: runData.boonData});
+      dispatch({ type: "allBoons", data: runData.boonData });
     }
     if (runData.weaponData != null) {
-      dispatch({type: "weapon", data: runData.weaponData});
+      dispatch({ type: "weapon", data: runData.weaponData });
     }
     if (runData.familiarData != null) {
-      dispatch({type: "familiar", data: runData.familiarData});
+      dispatch({ type: "familiar", data: runData.familiarData });
     }
     if (runData.extraData != null) {
-      dispatch({type: "extra", data: runData.extraData});
+      dispatch({ type: "extra", data: runData.extraData });
     }
     if (runData.elementalData != null) {
-      dispatch({type: "elemental", data: runData.elementalData});
+      dispatch({ type: "elemental", data: runData.elementalData });
     }
     if (runData.pinData != null) {
-      dispatch({type: "pin", data: runData.pinData});
+      dispatch({ type: "pin", data: runData.pinData });
     }
     if (runData.vowData != null) {
-      dispatch({type: "vows", data: runData.vowData});
+      dispatch({ type: "vows", data: runData.vowData });
     }
     if (runData.arcanaData != null) {
-      dispatch({type: "arcana", data: runData.arcanaData});
+      dispatch({ type: "arcana", data: runData.arcanaData });
     }
   }
 
   function addMessagePart(nonce, partInd, totalParts, partData) {
     var foundNonce = false;
 
-    messageHistory.forEach(oldMessage => {
+    messageHistory.forEach((oldMessage) => {
       if (oldMessage.nonce === nonce) {
         foundNonce = true;
         if (oldMessage.archived) {
@@ -88,7 +87,7 @@ function App() {
 
     if (!foundNonce) {
       //message is new. archive the rest, and make this the primary one
-      messageHistory.forEach(oldMessage => {
+      messageHistory.forEach((oldMessage) => {
         oldMessage.archived = true;
       });
 
@@ -96,8 +95,8 @@ function App() {
         nonce: nonce,
         totalParts: totalParts,
         parts: {},
-        archived: false
-      }
+        archived: false,
+      };
       newMessage.parts[partInd] = partData;
       messageHistory.push(newMessage);
 
@@ -110,7 +109,9 @@ function App() {
   function parseArgusMessageParam(message, startInd, partName) {
     var paramEndPosition = message.indexOf("*", startInd);
     if (paramEndPosition === -1) {
-      console.log("Got message in bad format. Couldn't find end " + partName + " star.");
+      console.log(
+        "Got message in bad format. Couldn't find end " + partName + " star."
+      );
       return [null, null];
     }
     var valueToReturn = parseInt(message.substring(startInd, paramEndPosition));
@@ -119,7 +120,7 @@ function App() {
       return [null, null];
     }
 
-    return [valueToReturn,paramEndPosition];
+    return [valueToReturn, paramEndPosition];
   }
 
   function twitchListen(target, contentType, message) {
@@ -131,16 +132,24 @@ function App() {
     if (nonce == null) {
       return;
     }
-    var [partInd, partIndEnd] = parseArgusMessageParam(message, nonceEnd+1, "part index");
+    var [partInd, partIndEnd] = parseArgusMessageParam(
+      message,
+      nonceEnd + 1,
+      "part index"
+    );
     if (partInd == null) {
       return;
     }
-    var [totalParts, totalPartsEnd] = parseArgusMessageParam(message, partIndEnd+1, "total parts");
+    var [totalParts, totalPartsEnd] = parseArgusMessageParam(
+      message,
+      partIndEnd + 1,
+      "total parts"
+    );
     if (totalParts == null) {
       return;
     }
 
-    var partData = message.substring(totalPartsEnd+1);
+    var partData = message.substring(totalPartsEnd + 1);
 
     addMessagePart(nonce, partInd, totalParts, partData);
   }
@@ -153,36 +162,70 @@ function App() {
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
   };
-  
+
   return (
     <div className="App">
       <div className="AppBackground" />
       <div className="TabList">
-        <div className={activeTab === 'runTab' ? 'RunTabButton ActiveTabButton' : 'RunTabButton'}
-             onClick={() => handleTabClick('runTab')}>
-          <img src="img/boon_tab_icon.png" className="TabButtonImage"/>
+        <div
+          className={
+            activeTab === "runTab"
+              ? "RunTabButton ActiveTabButton"
+              : "RunTabButton"
+          }
+          onClick={() => handleTabClick("runTab")}
+        >
+          <img src="img/boon_tab_icon.png" className="TabButtonImage" />
         </div>
 
-        <div className={activeTab === 'arcanaTab' ? 'ArcanaTabButton ActiveTabButton' : 'ArcanaTabButton'}
-             onClick={() => handleTabClick('arcanaTab')}>
-          <img src="img/arcana_tab_icon.png" className="TabButtonImage"/>
+        <div
+          className={
+            activeTab === "arcanaTab"
+              ? "ArcanaTabButton ActiveTabButton"
+              : "ArcanaTabButton"
+          }
+          onClick={() => handleTabClick("arcanaTab")}
+        >
+          <img src="img/arcana_tab_icon.png" className="TabButtonImage" />
         </div>
 
-        <div className={activeTab === 'vowTab' ? 'VowTabButton ActiveTabButton' : 'VowTabButton'}
-             onClick={() => handleTabClick('vowTab')}>
-          <img src="img/vow_tab_icon.png" className="TabButtonImage"/>
+        <div
+          className={
+            activeTab === "vowTab"
+              ? "VowTabButton ActiveTabButton"
+              : "VowTabButton"
+          }
+          onClick={() => handleTabClick("vowTab")}
+        >
+          <img src="img/vow_tab_icon.png" className="TabButtonImage" />
         </div>
 
-        <div className={activeTab === 'pinTab' ? 'PinTabButton ActiveTabButton' : 'PinTabButton'}
-             onClick={() => handleTabClick('pinTab')}>
-          <img src="img/pin_tab_icon.png" className="TabButtonImage"/>
+        <div
+          className={
+            activeTab === "pinTab"
+              ? "PinTabButton ActiveTabButton"
+              : "PinTabButton"
+          }
+          onClick={() => handleTabClick("pinTab")}
+        >
+          <img src="img/pin_tab_icon.png" className="TabButtonImage" />
         </div>
       </div>
       <div className="TabbedContent">
-        {activeTab === "runTab" && <RunPanel allBoons={state.allBoons} weaponData={state.weaponData} familiarData={state.familiarData} elementalData={state.elementalData} extraData={state.extraData}/>}
-        {activeTab === "arcanaTab" && <ArcanaPanel arcanaData={state.arcanaData}/>}
-        {activeTab === "vowTab" && <VowPanel vowData={state.vowData}/>}
-        {activeTab === "pinTab" && <PinPanel pinBoons={state.pinData}/>}
+        {activeTab === "runTab" && (
+          <RunPanel
+            allBoons={state.allBoons}
+            weaponData={state.weaponData}
+            familiarData={state.familiarData}
+            elementalData={state.elementalData}
+            extraData={state.extraData}
+          />
+        )}
+        {activeTab === "arcanaTab" && (
+          <ArcanaPanel arcanaData={state.arcanaData} />
+        )}
+        {activeTab === "vowTab" && <VowPanel vowData={state.vowData} />}
+        {activeTab === "pinTab" && <PinPanel pinBoons={state.pinData} />}
       </div>
     </div>
   );

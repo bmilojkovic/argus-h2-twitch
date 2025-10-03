@@ -1,19 +1,19 @@
+@font-face {
+  font-family: "Alegreya Sans";
+  src: url("../assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Alegreya Sans";
+  src: url("../assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf");
+  font-weight: bold;
+}
 
 .PinPanel {
   padding-top: 10px;
   width: 1024px;
   height: 712px;
-}
-
-.PinPanel .GridContainer {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(8, auto);
-
-  width: 65%;
-  height: 90%;
-  margin-left: 2%;
-  padding-top: 20px;
 }
 
 .PinPanel .PinPanelBackgroundImage {
@@ -24,10 +24,91 @@
   height: 645px;
 }
 
+.PinPanel .GridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 60px 120px auto;
+
+  width: 90%;
+  height: 84%;
+  margin-left: 2%;
+  padding-top: 20px;
+}
+
 .PinPanel .PinPanelTitle {
   color: white;
   grid-column-start: 1;
-  grid-column-end: 8;
+  grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
+  justify-self: center;
+  font-family: "Alegreya Sans";
+  font-size: 2em;
+  margin: 10px;
+}
+
+.PinPanel .PinnedBoon1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-self: center;
+}
+
+.PinPanel .PinnedBoon2 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-self: center;
+}
+
+.PinPanel .PinnedBoon3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-self: center;
+}
+
+.RequirementLabel {
+  font-family: "Algreya Sans";
+  color: white;
+  font-size: 1.5em;
+}
+
+.RequirementNotFulfilled {
+  filter: brightness(50%);
+}
+
+.RequirementFulfilled {
+  filter: brightness(100%);
+}
+
+.RequirementsPanel {
+  display: grid;
+
+  grid-template-columns: 20px repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.BoonRequirements1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.BoonRequirements2 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.BoonRequirements3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
