@@ -1,4 +1,3 @@
-
 .RunPanel {
   padding-top: 10px;
   width: 1024px;
@@ -8,12 +7,14 @@
 .RunPanel .GridContainer {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 22px repeat(7, 84px);
+  grid-template-rows: 30px repeat(7, 84px);
   grid-auto-flow: column;
 
+  position: relative;
   width: 65%;
   height: 90%;
-  margin-left: 2%;
+  padding-left: 2%;
+  top: -8px;
 }
 
 .RunPanel .RunPanelBackgroundImage {

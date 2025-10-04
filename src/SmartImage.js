@@ -1,5 +1,4 @@
-
-import { useRef } from 'react';
+import { useRef } from "react";
 
 function SmartImage({ src, fallback, className }) {
   const ref = useRef();
@@ -10,7 +9,9 @@ function SmartImage({ src, fallback, className }) {
     ref.current.src = fallback;
   }
 
-  return <img ref={ref} src={src} onError={handleFallback} className={className}/>;
+  return (
+    <img ref={ref} src={src} onError={handleFallback} className={className} />
+  );
 }
 
 export default SmartImage;

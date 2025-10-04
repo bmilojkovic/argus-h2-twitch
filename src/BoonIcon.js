@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { usePopper } from "react-popper";
 
 import ReactHtmlParser from "react-html-parser";
+import { Fragment } from "react";
 import SmartImage from "./SmartImage";
 import BoonTitle from "./BoonTitle";
 import "./css/BoonIcon.css";
 
-function BoonDetail({ boonDetails, lowPosition = false }) {
+function BoonDetail({ boonDetails }) {
   return (
     <div
-      className={lowPosition ? "BoonDetail BoonDetailLow" : "BoonDetail"}
+      className="BoonDetail"
       style={{
         backgroundImage: `url(img/${boonDetails.rarity}_detail_back.png)`,
       }}
@@ -33,12 +35,31 @@ function BoonDetail({ boonDetails, lowPosition = false }) {
   );
 }
 
-function BoonIcon({
-  boonDetails,
-  lowPosition = false,
-  isKeepsake = false,
-  extraClass = "",
-}) {
+function BoonIcon({ boonDetails, isKeepsake = false, extraClass = "" }) {
+  const [referenceElement, setReferenceElement] = useState(null);
+  const [popperElement, setPopperElement] = useState(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement: "right",
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [0, 10],
+        },
+      },
+      {
+        name: "preventOverflow",
+        options: { padding: 100 },
+      },
+      {
+        name: "flip",
+        options: {
+          fallbackPlacements: ["bottom"],
+        },
+      },
+    ],
+  });
+
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -49,37 +70,47 @@ function BoonIcon({
   };
 
   return (
-    <div
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-      className={
-        (!boonDetails.codeName.startsWith("Empty")
-          ? "BoonIcon"
-          : "EmptyBoonIcon") +
-        " " +
-        extraClass
-      }
-      style={
-        isKeepsake
-          ? {
-              borderImageSource: `url("img/KeepsakeFrame${boonDetails.rarity}.png")`,
-            }
-          : { borderImageSource: `url("img/Frame${boonDetails.rarity}.png")` }
-      }
-    >
-      <SmartImage
-        src={`img/${boonDetails.codeName}.png`}
-        fallback="img/DefaultBoon.png"
+    <>
+      <div
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        ref={setReferenceElement}
         className={
-          !boonDetails.codeName.startsWith("Empty")
-            ? "BoonImage"
-            : "EmptyBoonImage"
+          (!boonDetails.codeName.startsWith("Empty")
+            ? "BoonIcon"
+            : "EmptyBoonIcon") +
+          " " +
+          extraClass
         }
-      />
+        style={
+          isKeepsake
+            ? {
+                borderImageSource: `url("img/KeepsakeFrame${boonDetails.rarity}.png")`,
+              }
+            : { borderImageSource: `url("img/Frame${boonDetails.rarity}.png")` }
+        }
+      >
+        <SmartImage
+          src={`img/${boonDetails.codeName}.png`}
+          fallback="img/DefaultBoon.png"
+          className={
+            !boonDetails.codeName.startsWith("Empty")
+              ? "BoonImage"
+              : "EmptyBoonImage"
+          }
+        />
+      </div>
       {isHovering && !boonDetails.codeName.startsWith("Empty") && (
-        <BoonDetail boonDetails={boonDetails} lowPosition={lowPosition} />
+        <div
+          ref={setPopperElement}
+          style={styles.popper}
+          className="PopperElement"
+          {...attributes.popper}
+        >
+          <BoonDetail boonDetails={boonDetails} />
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

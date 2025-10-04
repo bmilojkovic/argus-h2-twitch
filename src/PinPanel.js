@@ -23,13 +23,15 @@ function RequirementsPanel({ boonDetails, gridClass }) {
                           key={`${boonDetails.codeName}-${requiredItem.codeName}-${lineInd}`}
                           boonDetails={requiredItem}
                           extraClass={
-                            !requiredItem["fulfilled"]
-                              ? "RequirementNotFulfilled"
-                              : ""
+                            requiredItem["fulfilled"]
+                              ? "NoDarkCover"
+                              : "DarkCover"
                           }
                         />
                       ) : (
-                        <>
+                        <Fragment
+                          key={`Fragment-${boonDetails.codeName}-${requiredItem.codeName}-${lineInd}`}
+                        >
                           <div
                             key={`Padding-${boonDetails.codeName}-${ind}-${lineInd}`}
                           >
@@ -44,7 +46,7 @@ function RequirementsPanel({ boonDetails, gridClass }) {
                                 : ""
                             }
                           />
-                        </>
+                        </Fragment>
                       )
                     )
                   : ""}

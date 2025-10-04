@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "Ubuntu Light";
+  src: url("../assets/fonts/ubuntu/Ubuntu-L.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu Bold";
+  src: url("../assets/fonts/ubuntu/Ubuntu-B.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
   position: relative;
@@ -58,7 +72,8 @@
   position: relative;
   width: 100%;
   height: 728px;
-  top: -10px;
+  top: -8px;
+  z-index: 0;
 }
 
 .RunTabButton {
@@ -74,6 +89,10 @@
   background-image: url("../assets/img/tab_button_back.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ArcanaTabButton {
@@ -89,6 +108,10 @@
   background-image: url("../assets/img/tab_button_back.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .VowTabButton {
@@ -104,6 +127,10 @@
   background-image: url("../assets/img/tab_button_back.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .PinTabButton {
@@ -119,12 +146,21 @@
   background-image: url("../assets/img/tab_button_back.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .TabButtonImage {
   width: 28px;
   height: 28px;
-  margin-top: 10px;
+}
+
+.TabButtonText {
+  color: white;
+  font-family: "Ubuntu Light";
+  font-size: 1.5em;
 }
 
 .ActiveTabButton {

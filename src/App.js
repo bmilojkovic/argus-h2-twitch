@@ -22,6 +22,7 @@ function App() {
     pinData: null,
     arcanaData: null,
     vowData: null,
+    totalRunItems: "0",
   });
 
   var messageHistory = [];
@@ -54,6 +55,9 @@ function App() {
     }
     if (runData.arcanaData != null) {
       dispatch({ type: "arcana", data: runData.arcanaData });
+    }
+    if (runData.totalRunItems != null) {
+      dispatch({ type: "totalRunItems", data: runData.totalRunItems });
     }
   }
 
@@ -176,6 +180,9 @@ function App() {
           onClick={() => handleTabClick("runTab")}
         >
           <img src="img/boon_tab_icon.png" className="TabButtonImage" />
+          <span className="TabButtonText">
+            {state.totalRunItems != null ? state.totalRunItems : "0"}
+          </span>
         </div>
 
         <div
@@ -187,6 +194,9 @@ function App() {
           onClick={() => handleTabClick("arcanaTab")}
         >
           <img src="img/arcana_tab_icon.png" className="TabButtonImage" />
+          <span className="TabButtonText">
+            {state.arcanaData != null ? state.arcanaData.totalGrasp : "0"}
+          </span>
         </div>
 
         <div
@@ -198,18 +208,28 @@ function App() {
           onClick={() => handleTabClick("vowTab")}
         >
           <img src="img/vow_tab_icon.png" className="TabButtonImage" />
+          <span className="TabButtonText">
+            {state.vowData != null ? state.vowData.totalFear : "0"}
+          </span>
         </div>
 
-        <div
-          className={
-            activeTab === "pinTab"
-              ? "PinTabButton ActiveTabButton"
-              : "PinTabButton"
-          }
-          onClick={() => handleTabClick("pinTab")}
-        >
-          <img src="img/pin_tab_icon.png" className="TabButtonImage" />
-        </div>
+        {state.pinData != null && state.pinData.length > 0 ? (
+          <div
+            className={
+              activeTab === "pinTab"
+                ? "PinTabButton ActiveTabButton"
+                : "PinTabButton"
+            }
+            onClick={() => handleTabClick("pinTab")}
+          >
+            <img src="img/pin_tab_icon.png" className="TabButtonImage" />
+            <span className="TabButtonText">
+              {state.pinData != null ? state.pinData.length : "0"}
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="TabbedContent">
         {activeTab === "runTab" && (

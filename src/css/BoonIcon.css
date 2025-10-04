@@ -1,26 +1,26 @@
 @font-face {
-  font-family: 'Ubuntu Light';
-  src: url('../assets/fonts/ubuntu/Ubuntu-L.ttf');
+  font-family: "Ubuntu Light";
+  src: url("../assets/fonts/ubuntu/Ubuntu-L.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Ubuntu Bold';
-  src: url('../assets/fonts/ubuntu/Ubuntu-B.ttf');
+  font-family: "Ubuntu Bold";
+  src: url("../assets/fonts/ubuntu/Ubuntu-B.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Alegreya Sans';
-  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf');
+  font-family: "Alegreya Sans";
+  src: url("../assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf");
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'Alegreya Sans';
-  src: url('../assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf');
+  font-family: "Alegreya Sans";
+  src: url("../assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf");
   font-weight: bold;
 }
 
@@ -29,27 +29,8 @@
   font-weight: bold;
 }
 
-.BoonDetail {
-  width: 675px;
-  height: 225px;
-  position: relative;
-  left: 100px;
-  top: -80px;
-  text-align: left;
-  color: white;
-  background-repeat: no-repeat;
-  font-family: 'Ubuntu Light';
-  z-index: 3;
-  padding-top: 10px;
-  padding-left: 10px;
-}
-
 .BoonDetail li::marker {
   content: "▸";
-}
-
-.BoonDetailLow {
-  transform: translateY(-80px)
 }
 
 .BoonIcon {
@@ -58,12 +39,15 @@
   border-image-width: 20px;
   border-image-repeat: fill;
   position: relative;
+  z-index: 2;
+
   width: 64px;
   height: 64px;
 }
 
 .EmptyBoonIcon {
   position: relative;
+
   width: 66px;
   height: 66px;
 }
@@ -75,7 +59,6 @@
   position: absolute;
   top: 2px;
   left: 2px;
-  z-index: -1;
 }
 
 .EmptyBoonImage {
@@ -85,5 +68,32 @@
   position: absolute;
   top: 9px;
   left: 9px;
-  z-index: -1;
+}
+
+.DarkCover {
+  filter: brightness(50%);
+}
+
+.NoDarkCover {
+  filter: brightness(100%);
+}
+
+.PopperElement {
+  position: relative;
+  z-index: 3;
+  width: 675px;
+  height: 225px;
+}
+
+.BoonDetail {
+  width: 665px;
+  height: 215px;
+  position: relative;
+  text-align: left;
+  color: white;
+  background-repeat: no-repeat;
+  font-family: "Ubuntu Light";
+  font-size: 1.2em;
+  padding-top: 10px;
+  padding-left: 10px;
 }
