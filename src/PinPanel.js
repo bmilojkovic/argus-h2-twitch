@@ -41,9 +41,9 @@ function RequirementsPanel({ boonDetails, gridClass }) {
                             key={`${boonDetails.codeName}-${requiredItem.codeName}-${lineInd}`}
                             boonDetails={requiredItem}
                             extraClass={
-                              !requiredItem["fulfilled"]
-                                ? "RequirementNotFulfilled"
-                                : ""
+                              requiredItem["fulfilled"]
+                                ? "NoDarkCover"
+                                : "DarkCover"
                             }
                           />
                         </Fragment>

@@ -14,7 +14,7 @@ function ArcanaPanel({ arcanaData }) {
           src="img/main_background.png"
           className="ArcanaPanelBackgroundImage"
         />
-        {arcanaData != null
+        {arcanaData != null && arcanaData.arcanaList != null
           ? arcanaData.arcanaList.map((arcanaCard) => (
               <CardPanel
                 key={arcanaCard.codeName}

@@ -49,15 +49,22 @@
   height: 88px;
   display: block;
   position: relative;
-  left: 42px;
+  left: -15px;
   top: 10px;
+  scale: 0.8;
 }
 
 .VowIcon {
   position: relative;
+  z-index: 1;
   width: 172px;
   height: 116px;
   background-image: url("../assets/img/vow_icon_back.png");
+  filter: brightness(50%);
+}
+
+.ActiveVowIcon {
+  filter: brightness(100%);
 }
 
 .VowIcon .PopperElement {
@@ -65,4 +72,51 @@
   position: relative;
   width: 665px;
   height: 215px;
+}
+
+.VowName {
+  font-family: "Alegreya Sans";
+  color: white;
+  font-size: 1.5em;
+  position: absolute;
+  top: 32px;
+  left: 70px;
+  font-style: italic;
+}
+
+.PipContainer {
+  position: absolute;
+  display: flex;
+  left: 70px;
+  top: 50px;
+}
+
+.PipImage {
+  width: auto;
+  height: 42px;
+
+  margin-left: -16px;
+}
+
+.VowPanel .BossDifficultyShrineUpgradeStyle {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 6;
+
+  justify-self: center;
+  background-image: url("../assets/img/rivals_icon_back.png");
+  width: 580px;
+}
+
+.VowPanel .BossDifficultyShrineUpgradeStyle .VowImage {
+  left: 200px;
+}
+
+.VowPanel .BossDifficultyShrineUpgradeStyle .VowName {
+  left: 285px;
+}
+
+.VowPanel .BossDifficultyShrineUpgradeStyle .PipContainer {
+  left: 285px;
 }
