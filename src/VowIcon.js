@@ -47,7 +47,7 @@ function VowIcon({ vowDetails, additionalClass = "" }) {
       {
         name: "flip",
         options: {
-          fallbackPlacements: ["bottom"],
+          fallbackPlacements: ["bottom", "top"],
         },
       },
     ],

@@ -10,10 +10,11 @@
   grid-template-rows: repeat(4, auto);
   grid-auto-flow: column;
 
+  position: relative;
   width: 65%;
   height: 90%;
-  margin-left: 2%;
-  padding-top: 2px;
+  padding-left: 2%;
+  top: -8px;
 }
 
 .ArcanaPanel .ArcanaPanelBackgroundImage {

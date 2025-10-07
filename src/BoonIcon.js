@@ -54,7 +54,7 @@ function BoonIcon({ boonDetails, isKeepsake = false, extraClass = "" }) {
       {
         name: "flip",
         options: {
-          fallbackPlacements: ["bottom"],
+          fallbackPlacements: ["bottom", "top"],
         },
       },
     ],

@@ -41,7 +41,7 @@ function CardPanel({ cardDetails, boundaryRef }) {
       {
         name: "flip",
         options: {
-          fallbackPlacements: ["bottom"],
+          fallbackPlacements: ["bottom", "top"],
         },
       },
     ],
