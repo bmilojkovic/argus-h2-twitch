@@ -31,7 +31,7 @@
 .PinPanel .GridContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 60px 120px auto;
+  grid-template-rows: 60px 120px 420px;
 
   position: relative;
   z-index: 0;
@@ -86,9 +86,22 @@
 
 .RequirementsPanel {
   display: grid;
+  overflow-y: auto;
 
   grid-template-columns: 20px repeat(3, 1fr);
   grid-template-rows: repeat(5, 1fr);
+}
+
+.RequirementsPanel::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.RequirementsPanel::-webkit-scrollbar-button {
+  display: none;
+}
+
+.RequirementsPanel::-webkit-scrollbar-thumb {
+  background-color: #58bc81;
 }
 
 .BoonRequirements1 {

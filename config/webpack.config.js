@@ -574,7 +574,7 @@ module.exports = function (webpackEnv) {
           {},
           {
             inject: true,
-            chunks: ["index"],
+            chunks: ["main"],
             template: paths.appHtml,
             filename: "index.html",
           },
@@ -695,7 +695,7 @@ module.exports = function (webpackEnv) {
       //   `index.html`
       // - "entrypoints" key: Array of files which are included in `index.html`,
       //   can be used to reconstruct the HTML if necessary
-      /*new WebpackManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: "asset-manifest.json",
         publicPath: paths.publicUrlOrPath,
         generate: (seed, files, entrypoints) => {
@@ -703,16 +703,17 @@ module.exports = function (webpackEnv) {
             manifest[file.name] = file.path;
             return manifest;
           }, seed);
-          const entrypointFiles = entrypoints.main.filter(
-            (fileName) => !fileName.endsWith(".map")
-          );
+          const entrypointFiles = entrypoints.index
+            .concat(entrypoints.config)
+            .concat(entrypoints.live_config)
+            .filter((fileName) => !fileName.endsWith(".map"));
 
           return {
             files: manifestFiles,
             entrypoints: entrypointFiles,
           };
         },
-      }),*/
+      }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how webpack interprets its code. This is a practical
       // solution that requires the user to opt into importing specific locales.

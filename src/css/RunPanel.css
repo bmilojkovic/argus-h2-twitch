@@ -7,7 +7,7 @@
 .RunPanel .GridContainer {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 30px repeat(7, 84px);
+  grid-template-rows: 35px repeat(7, 84px);
   grid-auto-flow: column;
 
   position: relative;

@@ -34,9 +34,7 @@ function RequirementsPanel({ boonDetails, gridClass }) {
                         >
                           <div
                             key={`Padding-${boonDetails.codeName}-${ind}-${lineInd}`}
-                          >
-                            {" "}
-                          </div>
+                          />
                           <BoonIcon
                             key={`${boonDetails.codeName}-${requiredItem.codeName}-${lineInd}`}
                             boonDetails={requiredItem}

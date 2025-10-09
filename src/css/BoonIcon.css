@@ -25,7 +25,7 @@
 }
 
 .EffectTextColor {
-  color: lightgreen;
+  color: #73c745;
   font-weight: bold;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .BoonDetail {
-  width: 665px;
+  width: 655px;
   height: 215px;
   position: relative;
   text-align: left;
@@ -96,4 +96,5 @@
   font-size: 1.2em;
   padding-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
 }

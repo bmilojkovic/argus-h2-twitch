@@ -1,13 +1,12 @@
-
 @font-face {
-  font-family: 'Ubuntu Bold';
-  src: url('../assets/fonts/ubuntu/Ubuntu-B.ttf');
+  font-family: "Ubuntu Bold";
+  src: url("../assets/fonts/ubuntu/Ubuntu-B.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 .BoonTitle {
-  font-family: 'Ubuntu Bold';
+  font-family: "Ubuntu Bold";
   text-transform: uppercase;
 }
 
@@ -16,27 +15,27 @@
 }
 
 .RareText {
-  color: #006eff;
+  color: #008aff;
 }
 
 .EpicText {
-  color: #b72ee0;
+  color: #9d12ff;
 }
 
 .HeroicText {
-  color: #ff5555;
+  color: #f86059;
 }
 
 .LegendaryText {
-  color: orange;
+  color: #ff9000;
 }
 
 .InfusionText {
-  color: #e84acd;
+  color: #ff4bff;
 }
 
 .DuoText {
-  color: greenyellow;
+  color: #d2ff61;
 }
 
 .TitleFirstLetter {
