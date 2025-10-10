@@ -574,7 +574,7 @@ module.exports = function (webpackEnv) {
           {},
           {
             inject: true,
-            chunks: ["main"],
+            chunks: ["index"],
             template: paths.appHtml,
             filename: "index.html",
           },
