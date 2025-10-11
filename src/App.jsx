@@ -10,9 +10,33 @@ import VowPanel from "./VowPanel";
 
 import ArgusReducer from "./Reducer";
 
+/*
+  This is the main entry point for the application. Here is an outline of the app structure:
+  -This component handles listening to broadcasts from our backend, assembles the messages and
+  stores them in a state object.
+  -The state is maintained by Reducer.jsx
+  -The UI is laid out in the following way:
+  --There are four tabs that are contained in this component: Run, Arcana, Vow, Pins
+  --Each of the tabs has its own respective Panel component that is the entry point for that tab
+  --RunPanel has an additional panel at the bottom called ExtraPanel
+  --The helper components used throughout the panels are:
+  ---BoonIcon - represents a boon. Used in RunPanel, ExtraPanel and PinPanel.
+  ---CardPanel - represents an arcana card. Used in ArcanaPanel.
+  ---VowIcon - represents a vow. Used in VowPanel.
+  ---SmartImage - a replacement for <img> that can have a fallback image if the dynamic one fails.
+
+  Alternate entry points for the application are:
+  -ConfigPage - the main configuration page for the extension. Checks if the user is logged in on
+  the backend and prompts them to do so if they haven't.
+*/
 function App() {
   const [activeTab, setActiveTab] = useState("runTab");
 
+  /*
+    we use one state object to hold our entire state
+    for now we actually always get all of these properties in an update
+    in the future we might make things more granular
+  */
   const [state, dispatch] = useImmerReducer(ArgusReducer, {
     allBoons: {},
     weaponData: null,
@@ -25,8 +49,35 @@ function App() {
     totalRunItems: "0",
   });
 
+  /*
+    a 'message' is part of a broadcast from the backend. we make sure
+    that this message is always <5KB to ensure that we don't hit
+    the limit imposed by twitch.
+
+    each broadcast will have a unique nonce attached to it. so all messages
+    that are part of a broadcast will share that nonce, and have an index
+    number.
+
+    we need to know which messages arrived, but also we need to know
+    past broadcasts cause there is a chance that we receive a message
+    from a historic broadcast that we should ignore.
+
+    essentially the plan for when a new message arrives is:
+    1. look through this message history to see if it is historic
+    (it will have 'archived' set to true). in that case - we ignore
+    2. if we find other messages with the same nonce that are not
+    historic, then we are on the path to assembling the full broadcast.
+    we just keep those. we also check if all parts have arrived in which
+    case the entire broadcast is ready for assembling and display
+    3. if we don't find other messages with the same nonce then this is the
+    start of a new broadcast. archive the currently active message and just
+    keep this one. if it is the only message in the broadcast we display it.
+  */
   var messageHistory = [];
 
+  /*
+    this is the function we call when we have the full broadcast assembled.
+  */
   function updateState(fullMessage) {
     var runData = JSON.parse(fullMessage);
 
@@ -61,16 +112,25 @@ function App() {
     }
   }
 
+  /*
+    this function handles a single message part according to the strategy
+    outlined above the messageHistory array.
+  */
   function addMessagePart(nonce, partInd, totalParts, partData) {
     var foundNonce = false;
 
+    // go through entire history
     messageHistory.forEach((oldMessage) => {
       if (oldMessage.nonce === nonce) {
         foundNonce = true;
         if (oldMessage.archived) {
+          //this is part of an archived message. don't care about it.
           return;
         }
 
+        //after this if, we know that this part belongs to the latest broadcast
+
+        //sanity check
         if (!(partInd in oldMessage.parts)) {
           //add part
           oldMessage.parts[partInd] = partData;
@@ -104,12 +164,23 @@ function App() {
       newMessage.parts[partInd] = partData;
       messageHistory.push(newMessage);
 
+      //if there are no other parts, we good.
       if (newMessage.totalParts === 1) {
         updateState(partData);
       }
     }
   }
 
+  /*
+    helper function to read our message header. since all tokens are separated by the
+    * symbol, this function looks for the first * from startInd and returns everything in between
+
+    we use this only for the header params - the final message will just be at the end
+
+    this function returns two values:
+    -the searched string
+    -the ending index (position of next *)
+  */
   function parseArgusMessageParam(message, startInd, partName) {
     var paramEndPosition = message.indexOf("*", startInd);
     if (paramEndPosition === -1) {
@@ -127,6 +198,10 @@ function App() {
     return [valueToReturn, paramEndPosition];
   }
 
+  /*
+    messages arrive in the following format:
+    *NONCE*PART_INDEX*TOTAL_PARTS*MESSAGE
+  */
   function twitchListen(target, contentType, message) {
     if (!message.startsWith("*")) {
       console.log("Got message in bad format. Missing initial star.");
@@ -158,6 +233,9 @@ function App() {
     addMessagePart(nonce, partInd, totalParts, partData);
   }
 
+  /*
+    subscribing to updates from our backend
+  */
   useEffect(() => {
     var twitch = window.Twitch.ext;
     twitch.listen("broadcast", twitchListen);
@@ -195,7 +273,10 @@ function App() {
         >
           <img src="img/arcana_tab_icon.png" className="TabButtonImage" />
           <span className="TabButtonText">
-            {state.arcanaData != null ? state.arcanaData.totalGrasp : "0"}
+            {state.arcanaData != null &&
+            Object.hasOwn(state.arcanaData, "totalGrasp")
+              ? state.arcanaData.totalGrasp
+              : "0"}
           </span>
         </div>
 
@@ -209,7 +290,9 @@ function App() {
         >
           <img src="img/vow_tab_icon.png" className="TabButtonImage" />
           <span className="TabButtonText">
-            {state.vowData != null ? state.vowData.totalFear : "0"}
+            {state.vowData != null && Object.hasOwn(state.vowData, "totalFear")
+              ? state.vowData.totalFear
+              : "0"}
           </span>
         </div>
 

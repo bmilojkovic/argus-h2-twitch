@@ -6,22 +6,9 @@
 }
 
 @font-face {
-  font-family: "Ubuntu Bold";
-  src: url("../assets/fonts/ubuntu/Ubuntu-B.ttf");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "Alegreya Sans";
   src: url("../assets/fonts/alegreya-sans/AlegreyaSans-Regular.ttf");
   font-weight: normal;
-}
-
-@font-face {
-  font-family: "Alegreya Sans";
-  src: url("../assets/fonts/alegreya-sans/AlegreyaSans-ExtraBold.ttf");
-  font-weight: bold;
 }
 
 .EffectTextColor {

@@ -3,6 +3,12 @@ import "./css/VowPanel.css";
 import VowIcon from "./VowIcon";
 
 function VowPanel({ vowData }) {
+  /*
+    this array holds the static information about vows that is
+    relevant only on FE:
+    -short name (used on icon)
+    -max levels (used to show empty pips)
+  */
   const allVows = [
     {
       shortName: "Pain",
@@ -91,6 +97,10 @@ function VowPanel({ vowData }) {
     },
   ];
 
+  /*
+    this is a helper function to assemble the final object used
+    in UI. we take data from backend and smoosh it with constants above.
+  */
   function buildVowDetails(uiVow, activeVowList) {
     if (activeVowList == null) {
       return uiVow;

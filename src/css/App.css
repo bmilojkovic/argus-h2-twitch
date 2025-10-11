@@ -5,13 +5,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: "Ubuntu Bold";
-  src: url("../assets/fonts/ubuntu/Ubuntu-B.ttf");
-  font-weight: normal;
-  font-style: normal;
-}
-
 .App {
   text-align: center;
   position: relative;
@@ -29,17 +22,6 @@
   left: 0;
 
   z-index: -3;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {

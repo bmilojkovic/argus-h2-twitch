@@ -7,7 +7,15 @@ import BoonTitle from "./BoonTitle";
 import "./css/CardPanel.css";
 
 function CardDetail({ cardDetails }) {
-  return (
+  function cardDetailsValid(cardObject) {
+    return (
+      Object.hasOwn(cardObject, "rarity") &&
+      Object.hasOwn(cardObject, "name") &&
+      Object.hasOwn(cardObject, "description")
+    );
+  }
+
+  return cardDetailsValid(cardDetails) ? (
     <div
       className="CardDetail"
       style={{
@@ -17,10 +25,12 @@ function CardDetail({ cardDetails }) {
       <BoonTitle boonTitle={cardDetails.name} rarity={cardDetails.rarity} />
       <p>{ReactHtmlParser(cardDetails.description)}</p>
     </div>
+  ) : (
+    <div />
   );
 }
 
-function CardPanel({ cardDetails, boundaryRef }) {
+function CardPanel({ cardDetails }) {
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -56,7 +66,7 @@ function CardPanel({ cardDetails, boundaryRef }) {
     setIsHovering(false);
   };
 
-  return (
+  return Object.hasOwn(cardDetails, "codeName") ? (
     <div
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
@@ -79,6 +89,8 @@ function CardPanel({ cardDetails, boundaryRef }) {
         </div>
       )}
     </div>
+  ) : (
+    <div />
   );
 }
 

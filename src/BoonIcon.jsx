@@ -8,7 +8,16 @@ import BoonTitle from "./BoonTitle";
 import "./css/BoonIcon.css";
 
 function BoonDetail({ boonDetails }) {
-  return (
+  function checkBoonDetailsValid(detailsObject) {
+    return (
+      Object.hasOwn(detailsObject, "codeName") &&
+      Object.hasOwn(detailsObject, "rarity") &&
+      Object.hasOwn(detailsObject, "name") &&
+      Object.hasOwn(detailsObject, "description")
+    );
+  }
+
+  return checkBoonDetailsValid(boonDetails) ? (
     <div
       className="BoonDetail"
       style={{
@@ -32,6 +41,8 @@ function BoonDetail({ boonDetails }) {
         ""
       )}
     </div>
+  ) : (
+    <div />
   );
 }
 
@@ -69,7 +80,14 @@ function BoonIcon({ boonDetails, isKeepsake = false, extraClass = "" }) {
     setIsHovering(false);
   };
 
-  return (
+  function checkBoonIconValid(detailsObject) {
+    return (
+      Object.hasOwn(detailsObject, "codeName") &&
+      Object.hasOwn(detailsObject, "rarity")
+    );
+  }
+
+  return checkBoonIconValid(boonDetails) ? (
     <>
       <div
         onMouseOver={handleMouseOver}
@@ -111,6 +129,8 @@ function BoonIcon({ boonDetails, isKeepsake = false, extraClass = "" }) {
         </div>
       )}
     </>
+  ) : (
+    <div />
   );
 }
 

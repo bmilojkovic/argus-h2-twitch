@@ -17,7 +17,15 @@ function getRarityFromLevel(vowLevel) {
 }
 
 function VowDetail({ vowDetails }) {
-  return (
+  function vowDetailsValid(detailsObject) {
+    return (
+      Object.hasOwn(detailsObject, "name") &&
+      Object.hasOwn(detailsObject, "level") &&
+      Object.hasOwn(detailsObject, "description")
+    );
+  }
+
+  return vowDetailsValid(vowDetails) ? (
     <div className="VowDetail">
       <BoonTitle
         boonTitle={vowDetails.name}
@@ -25,6 +33,8 @@ function VowDetail({ vowDetails }) {
       />
       <p>{ReactHtmlParser(vowDetails.description)}</p>
     </div>
+  ) : (
+    <div />
   );
 }
 
@@ -69,7 +79,15 @@ function VowIcon({ vowDetails, additionalClass = "" }) {
     return "PipUnfilled";
   }
 
-  return (
+  function vowObjectValid(vowObject) {
+    return (
+      Object.hasOwn(vowObject, "shortName") &&
+      Object.hasOwn(vowObject, "codeName") &&
+      Object.hasOwn(vowObject, "maxLevels")
+    );
+  }
+
+  return vowObjectValid(vowDetails) ? (
     <>
       <div
         onMouseOver={handleMouseOver}
@@ -112,6 +130,8 @@ function VowIcon({ vowDetails, additionalClass = "" }) {
         </div>
       )}
     </>
+  ) : (
+    <div />
   );
 }
 
