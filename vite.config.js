@@ -4,10 +4,11 @@ import { resolve } from "path";
 
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import mkcert from "vite-plugin-mkcert";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), mkcert()],
   base: "./",
   build: {
     rollupOptions: {
@@ -19,10 +20,7 @@ export default defineConfig({
     },
   },
   server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, "./.crt/key.pem")), // Adjust path as needed
-      cert: fs.readFileSync(path.resolve(__dirname, "./.crt/cert.pem")), // Adjust path as needed
-    },
+    https: true,
     port: 8080,
   },
 });
