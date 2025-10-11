@@ -66,7 +66,7 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "start": "set SSL_CRT_FILE=.crt/cert.pem&&set SSL_KEY_FILE=.crt/key.pem&&set HTTPS=true&&set PORT=8080&&node scripts/start.js",
+    "start": "set SSL_CRT_FILE=.crt/cert.pem&&set SSL_KEY_FILE=.crt/key.pem&&set HTTPS=true&&set PORT=8080&&node --max-old-space-size=4096 scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
