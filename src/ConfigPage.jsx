@@ -21,11 +21,11 @@ function ConfigPage() {
         })
           .then((response) => response.text())
           .then((data) => {
+            setChecking(false);
             setLoggedIn(data === "LOGIN_OK");
           });
       } catch (error) {
         setFailed(true);
-      } finally {
         setChecking(false);
       }
     });
@@ -43,11 +43,12 @@ function ConfigPage() {
             <h1>All good. 👀</h1>
             <p>
               We have confirmed that your mod has gone through a successful
-              login. You don't need to configure anything else.
+              connection with your Twitch account. You don't need to configure
+              anything else.
             </p>
             <p>
               To check if everything looks good, go to the "Stream Manager" tab
-              on twitch and click the live preview button for Argus. It is very
+              on Twitch and click the live preview button for Argus. It is very
               easy to find - it will have our icon 👀. When you click on it, a
               window with a preview will pop up. You <b>do not</b> have to be
               live to perform this check.
@@ -62,29 +63,34 @@ function ConfigPage() {
           </>
         ) : (
           <>
-            <h1>Need to log in from the game. 👀</h1>
+            <h1>Need to connect from the game. 👀</h1>
             <p>
-              It looks like you have not logged in to twitch from the mod yet.
-              :(
+              It looks like you have not connected your Twitch account with
+              Argus yet. :(
             </p>
             <p>
               <b>Install the mod.</b> You must have the Argus mod for Hades II
-              installed to continue. We suggest using r2modman as the
-              modmanager, as Argus is published through Thunderstore. Once you
-              have r2modman installed, just search for Argus inside the Hades II
-              category and follow the steps outlined in the mod manager.
+              installed to continue. We suggest using{" "}
+              <a href="https://thunderstore.io/package/ebkr/r2modman/">
+                r2modman
+              </a>{" "}
+              as the modmanager, as Argus is published through Thunderstore.
+              Once you have r2modman installed, just search for Argus inside the
+              Hades II category and follow the steps outlined in the mod
+              manager.
             </p>
             <p>
-              <b>Twitch authentication.</b> To perform the login process, simply
-              run the game with the mod installed. While the game is starting, a
-              browser window will pop up asking you to give Argus permission to
-              read your username. After you login everything should start
-              working. We use this process to ensure that streamers can not be
-              impersonated in our system.
+              <b>Twitch connection.</b> To connect your Twitch account with
+              Argus, simply run the game with the mod installed. While the game
+              is starting, a browser window will pop up asking you to give Argus
+              permission to access your basic profile information. We use this
+              process to ensure that streamers can not be impersonated in our
+              system.
             </p>
             <p>
-              After you perform the login operation once successfully we will
-              not ask you to do it again.
+              After you connect your account once successfully we will not ask
+              you to do it again, at least until the next update of the mod
+              itself.
             </p>
           </>
         )}
