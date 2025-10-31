@@ -8,7 +8,8 @@ function ConfigPage() {
   const [isChecking, setChecking] = useState(true);
 
   //const argusBackend = "http://localhost:3000";
-  const argusBackend = "https://argus-h2-backend.fly.dev";
+  //const argusBackend = "https://argus-h2-backend.fly.dev";
+  const argusBackend = "https://argus-h2-backend-test.fly.dev";
 
   useEffect(() => {
     window.Twitch.ext.onAuthorized(function (auth) {
@@ -69,28 +70,11 @@ function ConfigPage() {
               Argus yet. :(
             </p>
             <p>
-              <b>Install the mod.</b> You must have the Argus mod for Hades II
-              installed to continue. We suggest using{" "}
-              <a href="https://thunderstore.io/package/ebkr/r2modman/">
-                r2modman
+              Please follow the instructions on{" "}
+              <a href="https://github.com/bmilojkovic/argus-h2-mod">
+                out github page
               </a>{" "}
-              as the modmanager, as Argus is published through Thunderstore.
-              Once you have r2modman installed, just search for Argus inside the
-              Hades II category and follow the steps outlined in the mod
-              manager.
-            </p>
-            <p>
-              <b>Twitch connection.</b> To connect your Twitch account with
-              Argus, simply run the game with the mod installed. While the game
-              is starting, a browser window will pop up asking you to give Argus
-              permission to access your basic profile information. We use this
-              process to ensure that streamers can not be impersonated in our
-              system.
-            </p>
-            <p>
-              After you connect your account once successfully we will not ask
-              you to do it again, at least until the next update of the mod
-              itself.
+              to get your game set up.
             </p>
           </>
         )}
