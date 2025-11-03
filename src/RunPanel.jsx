@@ -11,6 +11,29 @@ function RunPanel({
   elementalData,
   extraData,
 }) {
+  function isNullOrEmptyObject(obj) {
+    // First, ensure the input is actually an object and not null or undefined
+    if (typeof obj !== "object" || obj === null) {
+      return true;
+    }
+
+    // Get an array of the object's own enumerable property names
+    const keys = Object.keys(obj);
+
+    // If the length of this array is 0, the object is empty
+    return keys.length === 0;
+  }
+
+  function isDataEmpty() {
+    return (
+      isNullOrEmptyObject(allBoons) &&
+      isNullOrEmptyObject(weaponData) &&
+      isNullOrEmptyObject(familiarData) &&
+      isNullOrEmptyObject(elementalData) &&
+      isNullOrEmptyObject(extraData)
+    );
+  }
+
   return (
     <div className="RunPanel">
       <div className="GridContainer">
@@ -18,6 +41,16 @@ function RunPanel({
           src="img/main_background.png"
           className="RunPanelBackgroundImage"
         />
+        {isDataEmpty() ? (
+          <div className="EmptyDataHint">
+            <p>
+              Boons will start showing up here as soon as a run is active and
+              Mel exits a room.
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
         <ElementPanel elementalData={elementalData} />
         {weaponData != null && weaponData.name != null ? (
           <BoonIcon boonDetails={weaponData} />
@@ -65,8 +98,8 @@ function RunPanel({
           }
         />
         {allBoons.otherBoons != null
-          ? allBoons.otherBoons.map((boon) => (
-              <BoonIcon key={boon.codeName} boonDetails={boon} />
+          ? allBoons.otherBoons.map((boon, ind) => (
+              <BoonIcon key={boon.codeName + ind} boonDetails={boon} />
             ))
           : ""}
       </div>

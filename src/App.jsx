@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRef } from "react";
 import { useImmerReducer } from "use-immer";
 
 import "./css/App.css";
@@ -73,7 +74,7 @@ function App() {
     start of a new broadcast. archive the currently active message and just
     keep this one. if it is the only message in the broadcast we display it.
   */
-  var messageHistory = [];
+  const messageHistory = useRef([]);
 
   /*
     this is the function we call when we have the full broadcast assembled.
@@ -120,7 +121,7 @@ function App() {
     var foundNonce = false;
 
     // go through entire history
-    messageHistory.forEach((oldMessage) => {
+    messageHistory.current.forEach((oldMessage) => {
       if (oldMessage.nonce === nonce) {
         foundNonce = true;
         if (oldMessage.archived) {
@@ -150,8 +151,10 @@ function App() {
     });
 
     if (!foundNonce) {
+      const MAX_HISTORY_SIZE = 10;
+
       //message is new. archive the rest, and make this the primary one
-      messageHistory.forEach((oldMessage) => {
+      messageHistory.current.forEach((oldMessage) => {
         oldMessage.archived = true;
       });
 
@@ -162,7 +165,13 @@ function App() {
         archived: false,
       };
       newMessage.parts[partInd] = partData;
-      messageHistory.push(newMessage);
+      messageHistory.current.push(newMessage);
+
+      //ensure that messageHistory doesn't get overly large
+      //we are removing the oldest messages from the queue
+      while (messageHistory.current.length > MAX_HISTORY_SIZE) {
+        messageHistory.current.shift();
+      }
 
       //if there are no other parts, we good.
       if (newMessage.totalParts === 1) {
