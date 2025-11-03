@@ -10,6 +10,10 @@
   text-transform: uppercase;
 }
 
+.RarityImage {
+  margin-top: 8px;
+}
+
 .CommonText {
   color: #ffffff;
 }
@@ -48,4 +52,12 @@
 
 .TitleOtherLetters {
   font-size: 1.5em;
+}
+
+.RightTitle {
+  float: right;
+}
+
+.LeftTitle {
+  float: left;
 }

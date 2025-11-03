@@ -79,3 +79,8 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.DetailText {
+  position: absolute;
+  top: 60px;
+}
