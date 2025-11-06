@@ -67,18 +67,22 @@ function CardPanel({ cardDetails }) {
   };
 
   return Object.hasOwn(cardDetails, "codeName") ? (
-    <div
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-      className="CardPanel"
-      ref={setReferenceElement}
-    >
-      <SmartImage
-        src={`img/${cardDetails.codeName}.png`}
-        fallback="img/DefaultBoon.png"
-        className="CardImage"
-      />
-      {isHovering && (
+    <>
+      <div
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        className={
+          "CardPanel " + ("rarity" in cardDetails ? " ActiveCardPanel" : "")
+        }
+        ref={setReferenceElement}
+      >
+        <SmartImage
+          src={`img/${cardDetails.codeName}.png`}
+          fallback="img/DefaultBoon.png"
+          className="CardImage"
+        />
+      </div>
+      {isHovering && "rarity" in cardDetails && (
         <div
           ref={setPopperElement}
           style={styles.popper}
@@ -88,7 +92,7 @@ function CardPanel({ cardDetails }) {
           <CardDetail cardDetails={cardDetails} />
         </div>
       )}
-    </div>
+    </>
   ) : (
     <div />
   );

@@ -125,20 +125,17 @@ function VowPanel({ vowData }) {
           src="img/main_background.png"
           className="VowPanelBackgroundImage"
         />
-        {
-          //vowData != null && vowData.vowList != null ?
-          allVows.map((singleVow) => (
-            <VowIcon
-              key={singleVow.codeName}
-              vowDetails={
-                vowData != null
-                  ? buildVowDetails(singleVow, vowData.vowList)
-                  : singleVow
-              }
-              additionalClass={singleVow.codeName + "Style"}
-            />
-          ))
-        }
+        {allVows.map((singleVow) => (
+          <VowIcon
+            key={singleVow.codeName}
+            vowDetails={
+              vowData != null
+                ? buildVowDetails(singleVow, vowData.vowList)
+                : singleVow
+            }
+            additionalClass={singleVow.codeName + "Style"}
+          />
+        ))}
       </div>
     </div>
   );
