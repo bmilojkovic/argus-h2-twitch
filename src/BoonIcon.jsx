@@ -2,12 +2,11 @@ import { useState } from "react";
 import { usePopper } from "react-popper";
 
 import ReactHtmlParser from "react-html-parser";
-import { Fragment } from "react";
 import SmartImage from "./SmartImage";
 import BoonTitle from "./BoonTitle";
 import "./css/BoonIcon.css";
 
-function BoonDetail({ boonDetails, displayType = "boon" }) {
+function BoonDetail({ boonDetails, displayType = "Boon" }) {
   function checkBoonDetailsValid(detailsObject) {
     return (
       Object.hasOwn(detailsObject, "codeName") &&
@@ -20,9 +19,15 @@ function BoonDetail({ boonDetails, displayType = "boon" }) {
   return checkBoonDetailsValid(boonDetails) ? (
     <div
       className="BoonDetail"
-      style={{
-        backgroundImage: `url(img/${boonDetails.rarity}_detail_back.png)`,
-      }}
+      style={
+        displayType === "Familiar"
+          ? {
+              backgroundImage: `url(img/Common_detail_back.png)`,
+            }
+          : {
+              backgroundImage: `url(img/${boonDetails.rarity}_detail_back.png)`,
+            }
+      }
     >
       <BoonTitle
         boonTitle={boonDetails.name}
@@ -52,12 +57,7 @@ function BoonDetail({ boonDetails, displayType = "boon" }) {
   );
 }
 
-function BoonIcon({
-  boonDetails,
-  isKeepsake = false,
-  extraClass = "",
-  displayType = "boon",
-}) {
+function BoonIcon({ boonDetails, extraClass = "", displayType = "Boon" }) {
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -112,10 +112,12 @@ function BoonIcon({
           extraClass
         }
         style={
-          isKeepsake
+          displayType === "Keepsake"
             ? {
                 borderImageSource: `url("img/KeepsakeFrame${boonDetails.rarity}.png")`,
               }
+            : displayType === "Familiar"
+            ? { borderImageSource: `url("img/FrameCommon.png")` }
             : { borderImageSource: `url("img/Frame${boonDetails.rarity}.png")` }
         }
       >
@@ -136,11 +138,7 @@ function BoonIcon({
           className="PopperElement"
           {...attributes.popper}
         >
-          {isKeepsake ? (
-            <BoonDetail boonDetails={boonDetails} displayType="keepsake" />
-          ) : (
-            <BoonDetail boonDetails={boonDetails} displayType={displayType} />
-          )}
+          <BoonDetail boonDetails={boonDetails} displayType={displayType} />
         </div>
       )}
     </>

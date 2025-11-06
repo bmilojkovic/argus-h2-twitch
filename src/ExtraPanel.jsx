@@ -17,9 +17,11 @@ function ExtraPanel({ extraData }) {
               <BoonIcon
                 key={extraItem.codeName}
                 boonDetails={extraItem}
-                isKeepsake={
+                displayType={
                   extraItem.extraType != null &&
                   extraItem.extraType == "Keepsake"
+                    ? "Keepsake"
+                    : "Boon"
                 }
               />
             ) : (

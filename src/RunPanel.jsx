@@ -53,12 +53,12 @@ function RunPanel({
         )}
         <ElementPanel elementalData={elementalData} />
         {weaponData != null && weaponData.name != null ? (
-          <BoonIcon boonDetails={weaponData} displayType="weapon" />
+          <BoonIcon boonDetails={weaponData} displayType="Weapon" />
         ) : (
           <div />
         )}
         {familiarData != null && familiarData.name != null ? (
-          <BoonIcon boonDetails={familiarData} />
+          <BoonIcon boonDetails={familiarData} displayType="Familiar" />
         ) : (
           <div />
         )}

@@ -27,26 +27,28 @@ const weaponRarityMapping = {
 
 function getRarityText(rarity, displayType) {
   switch (displayType) {
-    case "boon":
+    case "Boon":
       return rarity;
-    case "weapon":
+    case "Weapon":
       return weaponRarityMapping[rarity];
+    case "Familiar":
+      return "Lv. " + rarity;
     default:
       return "Common";
   }
 }
 
 /*
-displayType should be one of: boon, weapon, keepsake
+displayType should be one of: Boon, Weapon, Keepsake
 */
-function BoonTitle({ boonTitle, rarity, displayType = "boon" }) {
+function BoonTitle({ boonTitle, rarity, displayType = "Boon" }) {
   const words = boonTitle.split(" ");
 
   return (
     <>
       <div>
         <TitleText text={words} rarity={rarity} textPositon="Left" />
-        {displayType === "keepsake" ? (
+        {displayType === "Keepsake" ? (
           <img
             className="RarityImage RightTitle"
             src={`img/KeepsakeFrame${rarity}.png`}
