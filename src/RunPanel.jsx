@@ -44,8 +44,8 @@ function RunPanel({
         {isDataEmpty() ? (
           <div className="EmptyDataHint">
             <p>
-              Boons will start showing up here as soon as a run is active and
-              Mel exits a room.
+              If the mod is set up correctly, boons will start showing up here
+              as soon as a run is active and Mel exits a room.
             </p>
           </div>
         ) : (
