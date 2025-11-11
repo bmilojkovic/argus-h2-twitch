@@ -8,8 +8,8 @@ function ConfigPage() {
   const [isChecking, setChecking] = useState(true);
 
   //const argusBackend = "http://localhost:3000";
-  //const argusBackend = "https://argus-h2-backend.fly.dev";
-  const argusBackend = "https://argus-h2-backend-test.fly.dev";
+  const argusBackend = "https://argus-h2-backend.fly.dev";
+  //const argusBackend = "https://argus-h2-backend-test.fly.dev";
 
   useEffect(() => {
     window.Twitch.ext.onAuthorized(function (auth) {

@@ -41,16 +41,7 @@ function RunPanel({
           src="img/main_background.png"
           className="RunPanelBackgroundImage"
         />
-        {isDataEmpty() ? (
-          <div className="EmptyDataHint">
-            <p>
-              If the mod is set up correctly, boons will start showing up here
-              as soon as a run is active and Mel exits a room.
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
+        {isDataEmpty() ? <div className="EmptyDataHint"></div> : ""}
         <ElementPanel elementalData={elementalData} />
         {weaponData != null && weaponData.name != null ? (
           <BoonIcon boonDetails={weaponData} displayType="Weapon" />
