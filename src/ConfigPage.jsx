@@ -2,14 +2,12 @@ import "./css/ConfigPage.css";
 
 import { useState, useEffect } from "react";
 
+import { argusBackend } from "./util";
+
 function ConfigPage() {
   const [isFailed, setFailed] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isChecking, setChecking] = useState(true);
-
-  //const argusBackend = "http://localhost:3000";
-  const argusBackend = "https://argus-h2-backend.fly.dev";
-  //const argusBackend = "https://argus-h2-backend-test.fly.dev";
 
   useEffect(() => {
     window.Twitch.ext.onAuthorized(function (auth) {

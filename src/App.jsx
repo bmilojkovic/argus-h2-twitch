@@ -30,7 +30,7 @@ import ArgusReducer from "./Reducer";
   -ConfigPage - the main configuration page for the extension. Checks if the user is logged in on
   the backend and prompts them to do so if they haven't.
 */
-function App() {
+function App({ isDashboard = false, dashboardInfo = null }) {
   const [activeTab, setActiveTab] = useState("runTab");
 
   /*
@@ -246,8 +246,14 @@ function App() {
     subscribing to updates from our backend
   */
   useEffect(() => {
-    var twitch = window.Twitch.ext;
-    twitch.listen("broadcast", twitchListen);
+    if (!isDashboard) {
+      var twitch = window.Twitch.ext;
+      twitch.listen("broadcast", twitchListen);
+    } else {
+      if (dashboardInfo != null) {
+        updateState(dashboardInfo);
+      }
+    }
   }, []);
 
   const handleTabClick = (tabId) => {
