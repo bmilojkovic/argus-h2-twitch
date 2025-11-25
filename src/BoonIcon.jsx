@@ -112,17 +112,21 @@ function BoonIcon({ boonDetails, extraClass = "", displayType = "Boon" }) {
           extraClass
         }
         style={
-          displayType === "Keepsake"
-            ? {
-                borderImageSource: `url("img/KeepsakeFrame${boonDetails.rarity}.png")`,
-              }
-            : displayType === "Familiar"
-            ? { borderImageSource: `url("img/FrameCommon.png")` }
-            : displayType === "Boon" &&
-              Object.hasOwn(boonDetails, "boonType") &&
-              boonDetails.boonType === "Hammer"
-            ? { borderImageSource: `url("img/FrameHammer.png")` }
-            : { borderImageSource: `url("img/Frame${boonDetails.rarity}.png")` }
+          boonDetails.rarity !== ""
+            ? displayType === "Keepsake"
+              ? {
+                  borderImageSource: `url("img/KeepsakeFrame${boonDetails.rarity}.png")`,
+                }
+              : displayType === "Familiar"
+              ? { borderImageSource: `url("img/FrameCommon.png")` }
+              : displayType === "Boon" &&
+                Object.hasOwn(boonDetails, "boonType") &&
+                boonDetails.boonType === "Hammer"
+              ? { borderImageSource: `url("img/FrameHammer.png")` }
+              : {
+                  borderImageSource: `url("img/Frame${boonDetails.rarity}.png")`,
+                }
+            : {}
         }
       >
         <SmartImage

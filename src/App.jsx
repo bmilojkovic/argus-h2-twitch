@@ -251,10 +251,10 @@ function App({ isDashboard = false, dashboardInfo = null }) {
       twitch.listen("broadcast", twitchListen);
     } else {
       if (dashboardInfo != null) {
-        updateState(dashboardInfo);
+        updateState(JSON.stringify(dashboardInfo));
       }
     }
-  }, []);
+  }, [dashboardInfo]);
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);

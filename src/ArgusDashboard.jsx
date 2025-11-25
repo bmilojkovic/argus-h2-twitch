@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import App from "./App";
 import "./css/ArgusDashboard.css";
 
 import { argusBackend } from "./util";
+import { useInterval } from "./UseInterval";
 
 function ArgusDashboard() {
-  const [runInfoObject, setRunInfoObject] = useState([]);
+  const [runInfoObject, setRunInfoObject] = useState({});
 
   function fetchRunData() {
     try {
@@ -15,9 +16,8 @@ function ArgusDashboard() {
       })
         .then((response) => response.text())
         .then((data) => {
-          const newState = JSON.parse(data);
-          console.log(newState);
-          setRunInfoObject(newState);
+          let newData = JSON.parse(data);
+          setRunInfoObject(newData);
         });
     } catch (error) {
       console.log(error);
@@ -25,8 +25,12 @@ function ArgusDashboard() {
   }
 
   useEffect(() => {
-    setTimeout(fetchRunData, 5000);
+    fetchRunData();
   }, []);
+
+  useInterval(() => {
+    fetchRunData();
+  }, 5000);
 
   return (
     <div className="DashboardGrid">
@@ -35,25 +39,28 @@ function ArgusDashboard() {
             return (
               <div key={`DashboardItem${ind}`} className="DashboardItem">
                 <h1 className="StreamerUsername">
-                  <img
-                    className="StreamerProfilePicture"
-                    src={
+                  <a
+                    href={`https://twitch.tv/${runInfoObject[broadcasterId]["twitchProfile"]["twitchUsername"]}`}
+                  >
+                    <img
+                      className="StreamerProfilePicture"
+                      src={
+                        runInfoObject[broadcasterId]["twitchProfile"][
+                          "twitchProfilePic"
+                        ]
+                      }
+                    ></img>
+                    &nbsp;
+                    {
                       runInfoObject[broadcasterId]["twitchProfile"][
-                        "twitchProfilePic"
+                        "twitchUsername"
                       ]
                     }
-                  ></img>
-                  {
-                    runInfoObject[broadcasterId]["twitchProfile"][
-                      "twitchUsername"
-                    ]
-                  }
+                  </a>
                 </h1>
                 <App
                   isDashboard={true}
-                  dashboardInfo={JSON.stringify(
-                    runInfoObject[broadcasterId]["runData"]
-                  )}
+                  dashboardInfo={runInfoObject[broadcasterId]["runData"]}
                 />
               </div>
             );
