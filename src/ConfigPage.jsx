@@ -41,7 +41,7 @@ function ConfigPage() {
           <>
             <h1>All good. 👀</h1>
             <p>
-              We have confirmed that your mod has gone through a successful
+              We have confirmed that your mod/app has gone through a successful
               connection with your Twitch account. You don't need to configure
               anything else.
             </p>
@@ -69,7 +69,7 @@ function ConfigPage() {
             </p>
             <p>
               Please follow the instructions on{" "}
-              <a href="https://github.com/bmilojkovic/argus-h2-mod">
+              <a href="https://github.com/bmilojkovic/argus-h2-app">
                 out github page
               </a>{" "}
               to get your game set up.
