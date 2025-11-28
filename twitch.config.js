@@ -14,6 +14,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"), // Main application entry point
+        mobile: resolve(__dirname, "mobile.html"),
         config: resolve(__dirname, "config.html"),
         live_config: resolve(__dirname, "live_config.html"),
       },

@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config twitch.config.js",
     "build-twitch": "vite build --config twitch.config.js",
     "build-dashboard": "vite build --config dashboard.config.js",
     "lint": "eslint .",
