@@ -24,6 +24,13 @@
   height: 30px;
 }
 
+.MobileElementPanel {
+  grid-column-end: 4;
+  margin-left: unset;
+  grid-template-columns: repeat(5, 60px);
+  justify-self: center;
+}
+
 .ElementImage {
   width: auto;
   height: 22px;
@@ -34,4 +41,8 @@
   display: flex;
   align-items: center;
   height: 30px;
+}
+
+.MobileElementCell {
+  justify-content: center;
 }

@@ -264,11 +264,12 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
   return (
     <div className="App">
       <div className="AppBackground" />
-      <div className="TabList">
+      <div className={"TabList " + (isMobile ? "MobileTabList" : "")}>
         <div
           className={
             "TabButton RunTabButton " +
-            (activeTab === "runTab" ? "ActiveTabButton" : "")
+            (activeTab === "runTab" ? "ActiveTabButton " : "") +
+            (isMobile ? "MobileTabButton" : "")
           }
           onClick={() => handleTabClick("runTab")}
         >
@@ -281,7 +282,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
         <div
           className={
             "TabButton ArcanaTabButton " +
-            (activeTab === "arcanaTab" ? "ActiveTabButton" : "")
+            (activeTab === "arcanaTab" ? "ActiveTabButton " : "") +
+            (isMobile ? "MobileTabButton" : "")
           }
           onClick={() => handleTabClick("arcanaTab")}
         >
@@ -297,7 +299,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
         <div
           className={
             "TabButton VowTabButton " +
-            (activeTab === "vowTab" ? "ActiveTabButton" : "")
+            (activeTab === "vowTab" ? "ActiveTabButton " : "") +
+            (isMobile ? "MobileTabButton" : "")
           }
           onClick={() => handleTabClick("vowTab")}
         >
@@ -313,7 +316,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
           <div
             className={
               "TabButton PinTabButton " +
-              (activeTab === "pinTab" ? "ActiveTabButton" : "")
+              (activeTab === "pinTab" ? "ActiveTabButton " : "") +
+              (isMobile ? "MobileTabButton" : "")
             }
             onClick={() => handleTabClick("pinTab")}
           >

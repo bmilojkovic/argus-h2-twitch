@@ -50,6 +50,10 @@
   grid-template-columns: repeat(10, 100px);
 }
 
+.MobileTabList {
+  grid-template-columns: repeat(10, 75px);
+}
+
 .TabbedContent {
   position: relative;
   width: 100%;
@@ -70,6 +74,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.MobileTabButton {
+  width: 75px;
 }
 
 .RunTabButton {

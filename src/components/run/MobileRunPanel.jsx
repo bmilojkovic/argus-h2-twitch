@@ -38,16 +38,24 @@ function MobileRunPanel({
     <div className="MobileRunPanel">
       <div className="GridContainer">
         {isDataEmpty() ? <div className="EmptyDataHint"></div> : ""}
-        <ElementPanel elementalData={elementalData} />
+        <ElementPanel elementalData={elementalData} isMobile={true} />
         {weaponData != null && weaponData.name != null ? (
-          <BoonIcon boonDetails={weaponData} displayType="Weapon" />
+          <BoonIcon
+            boonDetails={weaponData}
+            displayType="Weapon"
+            extraClass="WeaponSlot"
+          />
         ) : (
-          <div />
+          <div className="WeaponSlot" />
         )}
         {familiarData != null && familiarData.name != null ? (
-          <BoonIcon boonDetails={familiarData} displayType="Familiar" />
+          <BoonIcon
+            boonDetails={familiarData}
+            displayType="Familiar"
+            extraClass="FamiliarSlot"
+          />
         ) : (
-          <div />
+          <div className="FamiliarSlot" />
         )}
         <BoonIcon
           boonDetails={
@@ -55,6 +63,7 @@ function MobileRunPanel({
               ? allBoons.weaponBoon
               : { codeName: "EmptyWeaponBoon", rarity: "" }
           }
+          extraClass="AttackSlot"
         />
         <BoonIcon
           boonDetails={
@@ -62,6 +71,7 @@ function MobileRunPanel({
               ? allBoons.specialBoon
               : { codeName: "EmptySpecialBoon", rarity: "" }
           }
+          extraClass="SpecialSlot"
         />
         <BoonIcon
           boonDetails={
@@ -69,6 +79,7 @@ function MobileRunPanel({
               ? allBoons.castBoon
               : { codeName: "EmptyCastBoon", rarity: "" }
           }
+          extraClass="CastSlot"
         />
         <BoonIcon
           boonDetails={
@@ -76,6 +87,7 @@ function MobileRunPanel({
               ? allBoons.sprintBoon
               : { codeName: "EmptySprintBoon", rarity: "" }
           }
+          extraClass="SprintSlot"
         />
         <BoonIcon
           boonDetails={
@@ -83,6 +95,7 @@ function MobileRunPanel({
               ? allBoons.manaBoon
               : { codeName: "EmptyManaBoon", rarity: "" }
           }
+          extraClass="ManaSlot"
         />
         {allBoons.otherBoons != null
           ? allBoons.otherBoons.map((boon, ind) => (
