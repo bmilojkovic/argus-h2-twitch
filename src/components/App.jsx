@@ -5,6 +5,7 @@ import { useImmerReducer } from "use-immer";
 
 import "../css/App.css";
 import RunPanel from "./run/RunPanel";
+import MobileRunPanel from "./run/MobileRunPanel";
 import PinPanel from "./pins/PinPanel";
 import ArcanaPanel from "./arcana/ArcanaPanel";
 import VowPanel from "./vows/VowPanel";
@@ -266,9 +267,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
       <div className="TabList">
         <div
           className={
-            activeTab === "runTab"
-              ? "RunTabButton ActiveTabButton"
-              : "RunTabButton"
+            "TabButton RunTabButton " +
+            (activeTab === "runTab" ? "ActiveTabButton" : "")
           }
           onClick={() => handleTabClick("runTab")}
         >
@@ -280,9 +280,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
 
         <div
           className={
-            activeTab === "arcanaTab"
-              ? "ArcanaTabButton ActiveTabButton"
-              : "ArcanaTabButton"
+            "TabButton ArcanaTabButton " +
+            (activeTab === "arcanaTab" ? "ActiveTabButton" : "")
           }
           onClick={() => handleTabClick("arcanaTab")}
         >
@@ -297,9 +296,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
 
         <div
           className={
-            activeTab === "vowTab"
-              ? "VowTabButton ActiveTabButton"
-              : "VowTabButton"
+            "TabButton VowTabButton " +
+            (activeTab === "vowTab" ? "ActiveTabButton" : "")
           }
           onClick={() => handleTabClick("vowTab")}
         >
@@ -314,9 +312,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
         {state.pinData != null && state.pinData.length > 0 ? (
           <div
             className={
-              activeTab === "pinTab"
-                ? "PinTabButton ActiveTabButton"
-                : "PinTabButton"
+              "TabButton PinTabButton " +
+              (activeTab === "pinTab" ? "ActiveTabButton" : "")
             }
             onClick={() => handleTabClick("pinTab")}
           >
@@ -330,15 +327,24 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
         )}
       </div>
       <div className="TabbedContent">
-        {activeTab === "runTab" && (
-          <RunPanel
-            allBoons={state.allBoons}
-            weaponData={state.weaponData}
-            familiarData={state.familiarData}
-            elementalData={state.elementalData}
-            extraData={state.extraData}
-          />
-        )}
+        {activeTab === "runTab" &&
+          (!isMobile ? (
+            <RunPanel
+              allBoons={state.allBoons}
+              weaponData={state.weaponData}
+              familiarData={state.familiarData}
+              elementalData={state.elementalData}
+              extraData={state.extraData}
+            />
+          ) : (
+            <MobileRunPanel
+              allBoons={state.allBoons}
+              weaponData={state.weaponData}
+              familiarData={state.familiarData}
+              elementalData={state.elementalData}
+              extraData={state.extraData}
+            />
+          ))}
         {activeTab === "arcanaTab" && (
           <ArcanaPanel arcanaData={state.arcanaData} />
         )}

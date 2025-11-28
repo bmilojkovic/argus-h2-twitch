@@ -1,4 +1,4 @@
-import "./css/VowPanel.css";
+import "../../css/VowPanel.css";
 
 import VowIcon from "./VowIcon";
 

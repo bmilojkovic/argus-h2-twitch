@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Ubuntu Light";
+  src: url("../assets/fonts/ubuntu/Ubuntu-L.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.MobileRunPanel {
+  padding-top: 10px;
+  width: 318px;
+
+  border: solid 2px #506e72;
+  border-radius: 10px;
+  background-color: #141817;
+}
+
+.MobileRunPanel .GridContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 35px repeat(7, 84px);
+  grid-auto-flow: column;
+
+  position: relative;
+  width: 65%;
+  height: 88.5%;
+  padding-left: 2%;
+  top: -8px;
+}
