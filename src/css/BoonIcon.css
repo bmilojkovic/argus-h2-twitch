@@ -24,6 +24,8 @@
 
   width: 64px;
   height: 64px;
+
+  justify-self: center;
 }
 
 .EmptyBoonIcon {
@@ -48,7 +50,7 @@
   display: block;
   position: absolute;
   top: 9px;
-  left: 9px;
+  left: 15px;
 }
 
 .DarkCover {
@@ -94,10 +96,12 @@
 .DetailText {
   position: absolute;
   top: 60px;
+  margin-right: 10px;
 }
 
 .MobileDetailText {
   position: absolute;
   top: 60px;
   font-size: 0.8em;
+  margin-right: 10px;
 }

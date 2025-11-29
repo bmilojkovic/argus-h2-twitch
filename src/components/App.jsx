@@ -346,7 +346,9 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
         {activeTab === "vowTab" && (
           <VowPanel vowData={state.vowData} isMobile={isMobile} />
         )}
-        {activeTab === "pinTab" && <PinPanel pinBoons={state.pinData} />}
+        {activeTab === "pinTab" && (
+          <PinPanel pinBoons={state.pinData} isMobile={isMobile} />
+        )}
       </div>
     </div>
   );

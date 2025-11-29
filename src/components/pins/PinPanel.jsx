@@ -1,11 +1,22 @@
 import "../../css/PinPanel.css";
 
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import BoonIcon from "../BoonIcon";
 
-function RequirementsPanel({ boonDetails, gridClass }) {
+function RequirementsPanel({
+  boonDetails,
+  gridClass,
+  viewRef,
+  isMobile = false,
+}) {
   return (
-    <div className={"RequirementsPanel " + gridClass}>
+    <div
+      className={
+        "RequirementsPanel " +
+        gridClass +
+        (isMobile ? " MobileRequirementsPanel" : "")
+      }
+    >
       {boonDetails.requirements != null
         ? boonDetails.requirements.map((requirementLine, ind) => {
             return (
@@ -22,6 +33,8 @@ function RequirementsPanel({ boonDetails, gridClass }) {
                         <BoonIcon
                           key={`${boonDetails.codeName}-${requiredItem.codeName}-${lineInd}`}
                           boonDetails={requiredItem}
+                          viewRef={viewRef}
+                          isMobile={isMobile}
                           extraClass={
                             requiredItem["fulfilled"]
                               ? "NoDarkCover"
@@ -38,6 +51,8 @@ function RequirementsPanel({ boonDetails, gridClass }) {
                           <BoonIcon
                             key={`${boonDetails.codeName}-${requiredItem.codeName}-${lineInd}`}
                             boonDetails={requiredItem}
+                            viewRef={viewRef}
+                            isMobile={isMobile}
                             extraClass={
                               requiredItem["fulfilled"]
                                 ? "NoDarkCover"
@@ -63,35 +78,64 @@ function RequirementsPanel({ boonDetails, gridClass }) {
   );
 }
 
-function PinPanel({ pinBoons }) {
+function PinPanel({ pinBoons, isMobile = false }) {
+  const viewRef = useRef(null);
+
   return (
-    <div className="PinPanel">
+    <div ref={viewRef} className={!isMobile ? "PinPanel" : "MobilePinPanel"}>
       <div className="GridContainer">
-        <p className="PinPanelTitle">
-          These are the boons that we are going for and their requirements.
-        </p>
-        <img
-          src="img/main_background.png"
-          className="PinPanelBackgroundImage"
-        />
-        {pinBoons != null
-          ? pinBoons.map((boon, ind) => (
-              <BoonIcon
-                key={boon.codeName}
-                boonDetails={boon}
-                extraClass={`PinnedBoon${ind + 1}`}
-              />
+        {!isMobile ? (
+          <>
+            <p className="PinPanelTitle">
+              These are the boons that we are going for and their requirements.
+            </p>
+            <img
+              src="img/main_background.png"
+              className="PinPanelBackgroundImage"
+            />
+          </>
+        ) : (
+          ""
+        )}
+
+        {pinBoons != null &&
+          (!isMobile ? (
+            <>
+              {pinBoons.map((boon, ind) => (
+                <BoonIcon
+                  key={boon.codeName}
+                  boonDetails={boon}
+                  extraClass={`PinnedBoon${ind + 1}`}
+                />
+              ))}{" "}
+              {pinBoons.map((boon2, ind2) => (
+                <RequirementsPanel
+                  key={`Requirements${boon2.codeName}`}
+                  boonDetails={boon2}
+                  gridClass={`BoonRequirements${ind2 + 1}`}
+                />
+              ))}
+            </>
+          ) : (
+            pinBoons.map((boon, ind) => (
+              <>
+                <BoonIcon
+                  key={boon.codeName}
+                  boonDetails={boon}
+                  viewRef={viewRef}
+                  isMobile={true}
+                  extraClass={`PinnedBoon${ind + 1}`}
+                />
+                <RequirementsPanel
+                  key={`MobileRequirements${boon.codeName}`}
+                  boonDetails={boon}
+                  viewRef={viewRef}
+                  isMobile={isMobile}
+                  gridClass={`MobileBoonRequirements${ind + 1}`}
+                />
+              </>
             ))
-          : ""}
-        {pinBoons != null
-          ? pinBoons.map((boon, ind) => (
-              <RequirementsPanel
-                key={`Requirements${boon.codeName}`}
-                boonDetails={boon}
-                gridClass={`BoonRequirements${ind + 1}`}
-              />
-            ))
-          : ""}
+          ))}
       </div>
     </div>
   );
