@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { usePopper } from "react-popper";
 
 import ReactHtmlParser from "react-html-parser";
@@ -6,7 +6,7 @@ import SmartImage from "../SmartImage";
 import BoonTitle from "../BoonTitle";
 import "../../css/CardPanel.css";
 
-function CardDetail({ cardDetails }) {
+function CardDetail({ cardDetails, isMobile = false }) {
   function cardDetailsValid(cardObject) {
     return (
       Object.hasOwn(cardObject, "rarity") &&
@@ -17,45 +17,81 @@ function CardDetail({ cardDetails }) {
 
   return cardDetailsValid(cardDetails) ? (
     <div
-      className="CardDetail"
+      className={"CardDetail " + (isMobile ? "MobileCardDetail" : "")}
       style={{
-        backgroundImage: `url(img/${cardDetails.rarity}_detail_back.png)`,
+        backgroundImage: `url(img/${cardDetails.rarity}_detail_back${
+          isMobile ? "_mobile" : ""
+        }.png)`,
       }}
     >
-      <BoonTitle boonTitle={cardDetails.name} rarity={cardDetails.rarity} />
-      <p>{ReactHtmlParser(cardDetails.description)}</p>
+      <BoonTitle
+        boonTitle={cardDetails.name}
+        rarity={cardDetails.rarity}
+        isMobile={isMobile}
+      />
+      <span className={!isMobile ? "DetailText" : "MobileDetailText"}>
+        <p>{ReactHtmlParser(cardDetails.description)}</p>
+      </span>
     </div>
   ) : (
     <div />
   );
 }
 
-function CardPanel({ cardDetails }) {
+function CardPanel({ cardDetails, viewRef, isMobile = false }) {
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: "right",
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 10],
-        },
-      },
-      {
-        name: "preventOverflow",
-        options: {
-          altBoundary: true,
-        },
-      },
-      {
-        name: "flip",
-        options: {
-          fallbackPlacements: ["bottom", "top"],
-        },
-      },
-    ],
-  });
+  const { styles, attributes } = usePopper(
+    referenceElement,
+    popperElement,
+    !isMobile
+      ? {
+          //standard parameters
+          placement: "right",
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+            {
+              name: "preventOverflow",
+              options: {
+                altBoundary: true,
+              },
+            },
+            {
+              name: "flip",
+              options: {
+                fallbackPlacements: ["bottom", "top"],
+              },
+            },
+          ],
+        }
+      : {
+          //mobile parameters
+          placement: "top",
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+            {
+              name: "preventOverflow",
+              options: { padding: 10, boundary: viewRef.current },
+            },
+            {
+              name: "flip",
+              options: {
+                fallbackPlacements: ["bottom"],
+              },
+            },
+          ],
+        }
+  );
 
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
@@ -72,24 +108,26 @@ function CardPanel({ cardDetails }) {
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         className={
-          "CardPanel " + ("rarity" in cardDetails ? " ActiveCardPanel" : "")
+          "CardPanel " +
+          ("rarity" in cardDetails ? " ActiveCardPanel " : "") +
+          (isMobile ? "MobileCardPanel" : "")
         }
         ref={setReferenceElement}
       >
         <SmartImage
           src={`img/${cardDetails.codeName}.png`}
           fallback="img/DefaultBoon.png"
-          className="CardImage"
+          className={"CardImage " + (isMobile ? "MobileCardImage" : "")}
         />
       </div>
       {isHovering && "rarity" in cardDetails && (
         <div
           ref={setPopperElement}
           style={styles.popper}
-          className="PopperElement"
+          className={"PopperElement " + isMobile ? "MobilePopperElement" : ""}
           {...attributes.popper}
         >
-          <CardDetail cardDetails={cardDetails} />
+          <CardDetail cardDetails={cardDetails} isMobile={isMobile} />
         </div>
       )}
     </>

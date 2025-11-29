@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import "../../css/ArcanaPanel.css";
 
 import CardPanel from "./CardPanel";
@@ -52,14 +54,23 @@ function buildArcanaDetails(uiArcana, activeArcanaList) {
   return toReturn;
 }
 
-function ArcanaPanel({ arcanaData }) {
+function ArcanaPanel({ arcanaData, isMobile = false }) {
+  const viewRef = useRef(null);
+
   return (
-    <div className="ArcanaPanel">
+    <div
+      ref={viewRef}
+      className={!isMobile ? "ArcanaPanel" : "MobileArcanaPanel"}
+    >
       <div className="GridContainer">
-        <img
-          src="img/main_background.png"
-          className="ArcanaPanelBackgroundImage"
-        />
+        {!isMobile ? (
+          <img
+            src="img/main_background.png"
+            className="ArcanaPanelBackgroundImage"
+          />
+        ) : (
+          ""
+        )}
         {allCards.map((arcanaCard) => (
           <CardPanel
             key={arcanaCard}
@@ -68,6 +79,8 @@ function ArcanaPanel({ arcanaData }) {
                 ? buildArcanaDetails(arcanaCard, arcanaData.arcanaList)
                 : { codeName: arcanaCard }
             }
+            isMobile={isMobile}
+            viewRef={viewRef}
           />
         ))}
       </div>

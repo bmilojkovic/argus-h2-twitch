@@ -341,7 +341,7 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
           />
         )}
         {activeTab === "arcanaTab" && (
-          <ArcanaPanel arcanaData={state.arcanaData} />
+          <ArcanaPanel arcanaData={state.arcanaData} isMobile={isMobile} />
         )}
         {activeTab === "vowTab" && <VowPanel vowData={state.vowData} />}
         {activeTab === "pinTab" && <PinPanel pinBoons={state.pinData} />}

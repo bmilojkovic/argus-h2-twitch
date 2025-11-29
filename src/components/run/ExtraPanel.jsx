@@ -2,7 +2,7 @@ import "../../css/ExtraPanel.css";
 
 import BoonIcon from "../BoonIcon";
 
-function ExtraPanel({ extraData, isMobile = false }) {
+function ExtraPanel({ extraData, viewRef, isMobile = false }) {
   function extraItemValid(extraItem) {
     return (
       Object.hasOwn(extraItem, "codeName") &&
@@ -17,6 +17,7 @@ function ExtraPanel({ extraData, isMobile = false }) {
               <BoonIcon
                 key={extraItem.codeName}
                 boonDetails={extraItem}
+                viewRef={viewRef}
                 displayType={
                   extraItem.extraType != null &&
                   extraItem.extraType == "Keepsake"

@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import "../../css/RunPanel.css";
 
 import ElementPanel from "./ElementPanel";
@@ -12,6 +14,8 @@ function RunPanel({
   extraData,
   isMobile = false,
 }) {
+  const viewRef = useRef(null);
+
   function isNullOrEmptyObject(obj) {
     // First, ensure the input is actually an object and not null or undefined
     if (typeof obj !== "object" || obj === null) {
@@ -36,7 +40,7 @@ function RunPanel({
   }
 
   return (
-    <div className={!isMobile ? "RunPanel" : "MobileRunPanel"}>
+    <div ref={viewRef} className={!isMobile ? "RunPanel" : "MobileRunPanel"}>
       <div className="GridContainer">
         {!isMobile ? (
           <img
@@ -51,6 +55,7 @@ function RunPanel({
         {weaponData != null && weaponData.name != null ? (
           <BoonIcon
             boonDetails={weaponData}
+            viewRef={viewRef}
             displayType="Weapon"
             extraClass="WeaponSlot"
             isMobile={isMobile}
@@ -61,6 +66,7 @@ function RunPanel({
         {familiarData != null && familiarData.name != null ? (
           <BoonIcon
             boonDetails={familiarData}
+            viewRef={viewRef}
             displayType="Familiar"
             extraClass="FamiliarSlot"
             isMobile={isMobile}
@@ -74,6 +80,7 @@ function RunPanel({
               ? allBoons.weaponBoon
               : { codeName: "EmptyWeaponBoon", rarity: "" }
           }
+          viewRef={viewRef}
           extraClass="AttackSlot"
           isMobile={isMobile}
         />
@@ -83,6 +90,7 @@ function RunPanel({
               ? allBoons.specialBoon
               : { codeName: "EmptySpecialBoon", rarity: "" }
           }
+          viewRef={viewRef}
           extraClass="SpecialSlot"
           isMobile={isMobile}
         />
@@ -92,6 +100,7 @@ function RunPanel({
               ? allBoons.castBoon
               : { codeName: "EmptyCastBoon", rarity: "" }
           }
+          viewRef={viewRef}
           extraClass="CastSlot"
           isMobile={isMobile}
         />
@@ -101,6 +110,7 @@ function RunPanel({
               ? allBoons.sprintBoon
               : { codeName: "EmptySprintBoon", rarity: "" }
           }
+          viewRef={viewRef}
           extraClass="SprintSlot"
           isMobile={isMobile}
         />
@@ -110,6 +120,7 @@ function RunPanel({
               ? allBoons.manaBoon
               : { codeName: "EmptyManaBoon", rarity: "" }
           }
+          viewRef={viewRef}
           extraClass="ManaSlot"
           isMobile={isMobile}
         />
@@ -118,13 +129,18 @@ function RunPanel({
               <BoonIcon
                 key={boon.codeName + ind}
                 boonDetails={boon}
+                viewRef={viewRef}
                 isMobile={isMobile}
               />
             ))
           : ""}
       </div>
       {extraData != null ? (
-        <ExtraPanel extraData={extraData} isMobile={isMobile} />
+        <ExtraPanel
+          extraData={extraData}
+          viewRef={viewRef}
+          isMobile={isMobile}
+        />
       ) : (
         ""
       )}

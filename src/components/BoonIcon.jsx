@@ -64,6 +64,7 @@ function BoonDetail({ boonDetails, displayType = "Boon", isMobile = false }) {
 
 function BoonIcon({
   boonDetails,
+  viewRef,
   extraClass = "",
   displayType = "Boon",
   isMobile = false,
@@ -108,7 +109,7 @@ function BoonIcon({
             },
             {
               name: "preventOverflow",
-              options: { padding: 10, boundary: viewport },
+              options: { padding: 10, boundary: viewRef.current },
             },
             {
               name: "flip",

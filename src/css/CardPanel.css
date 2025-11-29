@@ -24,6 +24,11 @@
   padding-left: 10px;
 }
 
+.MobileCardDetail {
+  width: 318px;
+  height: 205px;
+}
+
 .CardImage {
   height: 120px;
   display: block;
@@ -31,11 +36,19 @@
   z-index: 1;
 }
 
+.MobileCardImage {
+  height: 88px;
+}
+
 .CardPanel {
   position: relative;
   z-index: 1;
   height: 120px;
   filter: brightness(50%);
+}
+
+.MobileCardPanel {
+  height: 88px;
 }
 
 .ActiveCardPanel {
