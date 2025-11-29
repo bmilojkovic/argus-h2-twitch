@@ -11,8 +11,8 @@
 }
 
 .CardDetail {
-  width: 665px;
-  height: 215px;
+  width: 655px;
+  height: 205px;
   position: relative;
   text-align: left;
   color: white;
@@ -22,6 +22,7 @@
   z-index: 3;
   padding-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .MobileCardDetail {

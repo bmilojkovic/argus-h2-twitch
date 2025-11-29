@@ -17,7 +17,7 @@
 }
 
 .VowDetail {
-  width: 665px;
+  width: 655px;
   height: 215px;
   position: relative;
   text-align: left;
@@ -29,6 +29,13 @@
   z-index: 3;
   padding-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
+}
+
+.MobileVowDetail {
+  width: 298px;
+  height: 195px;
+  background-image: url("../assets/img/Common_detail_back_mobile.png");
 }
 
 .VowImage {
@@ -48,6 +55,11 @@
   height: 116px;
   background-image: url("../assets/img/vow_icon_back.png");
   filter: brightness(50%);
+}
+
+.MobileVowIcon {
+  transform: scale(0.8);
+  transform-origin: left;
 }
 
 .ActiveVowIcon {
@@ -94,6 +106,17 @@
   justify-self: center;
   background-image: url("../assets/img/rivals_icon_back.png");
   width: 580px;
+}
+
+.MobileVowPanel .BossDifficultyShrineUpgradeStyle {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 9;
+  grid-row-end: 10;
+
+  justify-self: center;
+  background-image: url("../assets/img/vow_icon_back.png");
+  width: 172px;
 }
 
 .VowPanel .BossDifficultyShrineUpgradeStyle .VowImage {

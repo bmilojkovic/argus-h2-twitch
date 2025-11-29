@@ -1,8 +1,10 @@
+import { useRef } from "react";
+
 import "../../css/VowPanel.css";
 
 import VowIcon from "./VowIcon";
 
-function VowPanel({ vowData }) {
+function VowPanel({ vowData, isMobile = false }) {
   /*
     this array holds the static information about vows that is
     relevant only on FE:
@@ -118,13 +120,19 @@ function VowPanel({ vowData }) {
     return toReturn;
   }
 
+  const viewRef = useRef(null);
+
   return (
-    <div className="VowPanel">
+    <div ref={viewRef} className={!isMobile ? "VowPanel" : "MobileVowPanel"}>
       <div className="GridContainer">
-        <img
-          src="img/main_background.png"
-          className="VowPanelBackgroundImage"
-        />
+        {!isMobile ? (
+          <img
+            src="img/main_background.png"
+            className="VowPanelBackgroundImage"
+          />
+        ) : (
+          ""
+        )}
         {allVows.map((singleVow) => (
           <VowIcon
             key={singleVow.codeName}
@@ -133,6 +141,8 @@ function VowPanel({ vowData }) {
                 ? buildVowDetails(singleVow, vowData.vowList)
                 : singleVow
             }
+            isMobile={isMobile}
+            viewRef={viewRef}
             additionalClass={singleVow.codeName + "Style"}
           />
         ))}

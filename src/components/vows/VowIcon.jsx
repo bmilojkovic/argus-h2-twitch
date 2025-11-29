@@ -16,7 +16,7 @@ function getRarityFromLevel(vowLevel) {
   return levelToRarityMapping[vowLevel - 1];
 }
 
-function VowDetail({ vowDetails }) {
+function VowDetail({ vowDetails, isMobile = false }) {
   function vowDetailsValid(detailsObject) {
     return (
       Object.hasOwn(detailsObject, "name") &&
@@ -26,42 +26,78 @@ function VowDetail({ vowDetails }) {
   }
 
   return vowDetailsValid(vowDetails) ? (
-    <div className="VowDetail">
+    <div className={"VowDetail " + (isMobile ? "MobileVowDetail" : "")}>
       <BoonTitle
         boonTitle={vowDetails.name}
         rarity={getRarityFromLevel(vowDetails.level)}
+        isMobile={isMobile}
       />
-      <p>{ReactHtmlParser(vowDetails.description)}</p>
+      <span className={!isMobile ? "DetailText" : "MobileDetailText"}>
+        <p>{ReactHtmlParser(vowDetails.description)}</p>
+      </span>
     </div>
   ) : (
     <div />
   );
 }
 
-function VowIcon({ vowDetails, additionalClass = "" }) {
+function VowIcon({
+  vowDetails,
+  viewRef,
+  isMobile = false,
+  additionalClass = "",
+}) {
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: "right",
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 10],
-        },
-      },
-      {
-        name: "preventOverflow",
-        options: { padding: 100 },
-      },
-      {
-        name: "flip",
-        options: {
-          fallbackPlacements: ["bottom", "top"],
-        },
-      },
-    ],
-  });
+  const { styles, attributes } = usePopper(
+    referenceElement,
+    popperElement,
+    !isMobile
+      ? {
+          //standard parameters
+          placement: "right",
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+            {
+              name: "preventOverflow",
+              options: { padding: 100 },
+            },
+            {
+              name: "flip",
+              options: {
+                fallbackPlacements: ["bottom", "top"],
+              },
+            },
+          ],
+        }
+      : {
+          //mobile parameters
+          placement: "top",
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+            {
+              name: "preventOverflow",
+              options: { padding: 10, boundary: viewRef.current },
+            },
+            {
+              name: "flip",
+              options: {
+                fallbackPlacements: ["bottom"],
+              },
+            },
+          ],
+        }
+  );
 
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
@@ -96,7 +132,8 @@ function VowIcon({ vowDetails, additionalClass = "" }) {
         className={
           "VowIcon " +
           additionalClass +
-          ("level" in vowDetails ? " ActiveVowIcon" : "")
+          ("level" in vowDetails ? " ActiveVowIcon " : "") +
+          (isMobile ? " MobileVowIcon" : "")
         }
       >
         <span class="VowName">{vowDetails.shortName}</span>
@@ -126,7 +163,7 @@ function VowIcon({ vowDetails, additionalClass = "" }) {
           className="PopperElement"
           {...attributes.popper}
         >
-          <VowDetail vowDetails={vowDetails} />
+          <VowDetail vowDetails={vowDetails} isMobile={isMobile} />
         </div>
       )}
     </>
