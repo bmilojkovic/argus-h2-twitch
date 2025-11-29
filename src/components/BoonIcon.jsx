@@ -6,7 +6,7 @@ import SmartImage from "./SmartImage";
 import BoonTitle from "./BoonTitle";
 import "../css/BoonIcon.css";
 
-function BoonDetail({ boonDetails, displayType = "Boon" }) {
+function BoonDetail({ boonDetails, displayType = "Boon", isMobile = false }) {
   function checkBoonDetailsValid(detailsObject) {
     return (
       Object.hasOwn(detailsObject, "codeName") &&
@@ -18,14 +18,18 @@ function BoonDetail({ boonDetails, displayType = "Boon" }) {
 
   return checkBoonDetailsValid(boonDetails) ? (
     <div
-      className="BoonDetail"
+      className={"BoonDetail " + (isMobile ? "MobileBoonDetail" : "")}
       style={
         displayType === "Familiar"
           ? {
-              backgroundImage: `url(img/Common_detail_back.png)`,
+              backgroundImage: `url(img/Common_detail_back${
+                isMobile ? "_mobile" : ""
+              }.png)`,
             }
           : {
-              backgroundImage: `url(img/${boonDetails.rarity}_detail_back.png)`,
+              backgroundImage: `url(img/${boonDetails.rarity}_detail_back${
+                isMobile ? "_mobile" : ""
+              }.png)`,
             }
       }
     >
@@ -33,8 +37,9 @@ function BoonDetail({ boonDetails, displayType = "Boon" }) {
         boonTitle={boonDetails.name}
         rarity={boonDetails.rarity}
         displayType={displayType}
+        isMobile={isMobile}
       />
-      <span className="DetailText">
+      <span className={!isMobile ? "DetailText" : "MobileDetailText"}>
         <p>{ReactHtmlParser(boonDetails.description)}</p>
         {boonDetails.effects != null ? (
           <ul>
@@ -57,30 +62,63 @@ function BoonDetail({ boonDetails, displayType = "Boon" }) {
   );
 }
 
-function BoonIcon({ boonDetails, extraClass = "", displayType = "Boon" }) {
+function BoonIcon({
+  boonDetails,
+  extraClass = "",
+  displayType = "Boon",
+  isMobile = false,
+}) {
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: "right",
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 10],
-        },
-      },
-      {
-        name: "preventOverflow",
-        options: { padding: 100 },
-      },
-      {
-        name: "flip",
-        options: {
-          fallbackPlacements: ["bottom", "top"],
-        },
-      },
-    ],
-  });
+  const { styles, attributes } = usePopper(
+    referenceElement,
+    popperElement,
+    !isMobile
+      ? {
+          //standard parameters
+          placement: "right",
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+            {
+              name: "preventOverflow",
+              options: { padding: 100 },
+            },
+            {
+              name: "flip",
+              options: {
+                fallbackPlacements: ["bottom", "top"],
+              },
+            },
+          ],
+        }
+      : {
+          //mobile parameters
+          placement: "left-start",
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+            {
+              name: "preventOverflow",
+              options: { padding: 10, boundary: viewport },
+            },
+            {
+              name: "flip",
+              options: {
+                fallbackPlacements: ["bottom", "top"],
+              },
+            },
+          ],
+        }
+  );
 
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
@@ -143,10 +181,14 @@ function BoonIcon({ boonDetails, extraClass = "", displayType = "Boon" }) {
         <div
           ref={setPopperElement}
           style={styles.popper}
-          className="PopperElement"
+          className={"PopperElement " + isMobile ? "MobilePopperElement" : ""}
           {...attributes.popper}
         >
-          <BoonDetail boonDetails={boonDetails} displayType={displayType} />
+          <BoonDetail
+            boonDetails={boonDetails}
+            displayType={displayType}
+            isMobile={isMobile}
+          />
         </div>
       )}
     </>

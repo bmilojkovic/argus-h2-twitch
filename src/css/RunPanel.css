@@ -11,6 +11,11 @@
   height: 712px;
 }
 
+.MobileRunPanel {
+  padding-top: 10px;
+  width: 318px;
+}
+
 .RunPanel .GridContainer {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -21,6 +26,25 @@
   width: 65%;
   height: 88.5%;
   padding-left: 2%;
+  top: -8px;
+}
+
+.MobileRunPanel .GridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 35px repeat(7, 84px);
+  grid-auto-flow: row;
+
+  border: solid 2px #506e72;
+  border-radius: 10px;
+  background-color: #141817;
+
+  position: relative;
+  width: 96%;
+  height: 88.5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
   top: -8px;
 }
 

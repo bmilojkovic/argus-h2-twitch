@@ -8,6 +8,14 @@
   height: 10%;
 }
 
+.MobileExtraPanel {
+  grid-template-columns: repeat(3, 1fr);
+  width: 96%;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-left: unset;
+}
+
 .ExtraPanel .BoonIcon {
   transform: scale(0.8);
 }

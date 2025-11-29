@@ -2,7 +2,7 @@ import "../../css/ExtraPanel.css";
 
 import BoonIcon from "../BoonIcon";
 
-function ExtraPanel({ extraData }) {
+function ExtraPanel({ extraData, isMobile = false }) {
   function extraItemValid(extraItem) {
     return (
       Object.hasOwn(extraItem, "codeName") &&
@@ -10,7 +10,7 @@ function ExtraPanel({ extraData }) {
     );
   }
   return (
-    <div className="ExtraPanel">
+    <div className={"ExtraPanel " + (isMobile ? "MobileExtraPanel" : "")}>
       {extraData != null
         ? extraData.map((extraItem) =>
             extraItemValid(extraItem) ? (
@@ -23,6 +23,7 @@ function ExtraPanel({ extraData }) {
                     ? "Keepsake"
                     : "Boon"
                 }
+                isMobile={isMobile}
               />
             ) : (
               <div />

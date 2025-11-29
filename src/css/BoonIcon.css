@@ -80,7 +80,24 @@
   padding-right: 10px;
 }
 
+.MobilePopperElement {
+  z-index: 3;
+  width: 318px;
+  height: 205px;
+}
+
+.MobileBoonDetail {
+  width: 298px;
+  height: 195px;
+}
+
 .DetailText {
   position: absolute;
   top: 60px;
+}
+
+.MobileDetailText {
+  position: absolute;
+  top: 60px;
+  font-size: 0.8em;
 }

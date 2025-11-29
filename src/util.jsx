@@ -48,6 +48,138 @@ export const testingData = {
           "Gain a chance to <b>Dodge</b> for each <b>Air</b> you have.",
         effects: [{ text: "Dodge Chance per Air Boon:", value: "+2%" }],
       },
+      {
+        codeName: "DaggerBlinkAoETrait",
+        rarity: "Common",
+        name: "Sweeping Ambush",
+        boonType: "Hammer",
+        description:
+          "Your <b>Omega Attack</b> deals <b>+400%</b> damage in a wider area, but uses <b>+20 Magick</b>.",
+      },
+      {
+        codeName: "PoseidonSplashSprintBoon",
+        rarity: "Duo",
+        name: "Beach Ball",
+        boonType: "Boon",
+        description:
+          "Your <b>Sprint</b> creates a watery globe behind you, which surges ahead once you stop.",
+        effects: [{ text: "Max Blast Damage (after 2 Sec.):", value: "300" }],
+      },
+      {
+        codeName: "DoubleRewardBoon",
+        rarity: "Rare",
+        name: "Sea Star",
+        boonType: "Boon",
+        description:
+          "Whenever you claim rewards other than <b>Boons</b>, <b>Daedalus Hammers</b>, or rare resources, a copy may appear.",
+        effects: [{ text: "Double Reward Chance:", value: "30%" }],
+      },
+      {
+        codeName: "AmplifyConeBoon",
+        rarity: "Legendary",
+        name: "King Tide",
+        boonType: "Boon",
+        description:
+          "Your splash effects from <b>Poseidon</b> are larger and deal bonus damage to <b>Guardians</b>.",
+        effects: [{ text: "Splash Damage vs. Guardians:", value: "+200%" }],
+      },
+      {
+        codeName: "ElementalDodgeBoon",
+        rarity: "Infusion",
+        name: "Wispy Wiles",
+        boonType: "Boon",
+        description:
+          "Gain a chance to <b>Dodge</b> for each <b>Air</b> you have.",
+        effects: [{ text: "Dodge Chance per Air Boon:", value: "+2%" }],
+      },
+      {
+        codeName: "DaggerBlinkAoETrait",
+        rarity: "Common",
+        name: "Sweeping Ambush",
+        boonType: "Hammer",
+        description:
+          "Your <b>Omega Attack</b> deals <b>+400%</b> damage in a wider area, but uses <b>+20 Magick</b>.",
+      },
+      {
+        codeName: "PoseidonSplashSprintBoon",
+        rarity: "Duo",
+        name: "Beach Ball",
+        boonType: "Boon",
+        description:
+          "Your <b>Sprint</b> creates a watery globe behind you, which surges ahead once you stop.",
+        effects: [{ text: "Max Blast Damage (after 2 Sec.):", value: "300" }],
+      },
+      {
+        codeName: "DoubleRewardBoon",
+        rarity: "Rare",
+        name: "Sea Star",
+        boonType: "Boon",
+        description:
+          "Whenever you claim rewards other than <b>Boons</b>, <b>Daedalus Hammers</b>, or rare resources, a copy may appear.",
+        effects: [{ text: "Double Reward Chance:", value: "30%" }],
+      },
+      {
+        codeName: "AmplifyConeBoon",
+        rarity: "Legendary",
+        name: "King Tide",
+        boonType: "Boon",
+        description:
+          "Your splash effects from <b>Poseidon</b> are larger and deal bonus damage to <b>Guardians</b>.",
+        effects: [{ text: "Splash Damage vs. Guardians:", value: "+200%" }],
+      },
+      {
+        codeName: "ElementalDodgeBoon",
+        rarity: "Infusion",
+        name: "Wispy Wiles",
+        boonType: "Boon",
+        description:
+          "Gain a chance to <b>Dodge</b> for each <b>Air</b> you have.",
+        effects: [{ text: "Dodge Chance per Air Boon:", value: "+2%" }],
+      },
+      {
+        codeName: "DaggerBlinkAoETrait",
+        rarity: "Common",
+        name: "Sweeping Ambush",
+        boonType: "Hammer",
+        description:
+          "Your <b>Omega Attack</b> deals <b>+400%</b> damage in a wider area, but uses <b>+20 Magick</b>.",
+      },
+      {
+        codeName: "PoseidonSplashSprintBoon",
+        rarity: "Duo",
+        name: "Beach Ball",
+        boonType: "Boon",
+        description:
+          "Your <b>Sprint</b> creates a watery globe behind you, which surges ahead once you stop.",
+        effects: [{ text: "Max Blast Damage (after 2 Sec.):", value: "300" }],
+      },
+      {
+        codeName: "DoubleRewardBoon",
+        rarity: "Rare",
+        name: "Sea Star",
+        boonType: "Boon",
+        description:
+          "Whenever you claim rewards other than <b>Boons</b>, <b>Daedalus Hammers</b>, or rare resources, a copy may appear.",
+        effects: [{ text: "Double Reward Chance:", value: "30%" }],
+      },
+      {
+        codeName: "AmplifyConeBoon",
+        rarity: "Legendary",
+        name: "King Tide",
+        boonType: "Boon",
+        description:
+          "Your splash effects from <b>Poseidon</b> are larger and deal bonus damage to <b>Guardians</b>.",
+        effects: [{ text: "Splash Damage vs. Guardians:", value: "+200%" }],
+      },
+      {
+        codeName: "ElementalDodgeBoon",
+        rarity: "Infusion",
+        name: "Wispy Wiles",
+        boonType: "Boon",
+        description:
+          "Gain a chance to <b>Dodge</b> for each <b>Air</b> you have.",
+        effects: [{ text: "Dodge Chance per Air Boon:", value: "+2%" }],
+      },
     ],
     totalBoons: 9,
     manaBoon: {
@@ -126,6 +258,38 @@ export const testingData = {
     },
     {
       extraType: "Hex",
+      codeName: "SpellSummonTrait",
+      name: "Night Bloom",
+      description:
+        "Your <b>Hex</b> raises the last susceptible foe slain this <b>Encounter</b> to fight for you for <b>12 Sec.</b>",
+      rarity: "Common",
+    },
+    {
+      extraType: "Athena",
+      codeName: "ForceZeusBoonKeepsake",
+      name: "Cloud Bangle",
+      description:
+        "A <b>Boon</b> of <b>Zeus</b> is likely. You can <b>Rarify</b> his <b>Epic</b> blessings once this night.",
+      rarity: "Epic",
+    },
+    {
+      extraType: "Athena",
+      codeName: "SpellSummonTrait",
+      name: "Night Bloom",
+      description:
+        "Your <b>Hex</b> raises the last susceptible foe slain this <b>Encounter</b> to fight for you for <b>12 Sec.</b>",
+      rarity: "Common",
+    },
+    {
+      extraType: "Athena",
+      codeName: "ForceZeusBoonKeepsake",
+      name: "Cloud Bangle",
+      description:
+        "A <b>Boon</b> of <b>Zeus</b> is likely. You can <b>Rarify</b> his <b>Epic</b> blessings once this night.",
+      rarity: "Epic",
+    },
+    {
+      extraType: "Athena",
       codeName: "SpellSummonTrait",
       name: "Night Bloom",
       description:

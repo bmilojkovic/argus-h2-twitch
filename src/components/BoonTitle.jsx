@@ -1,12 +1,22 @@
 import "../css/BoonTitle.css";
 
-function TitleText({ text, rarity, textPositon }) {
+function TitleText({ text, rarity, textPositon, isMobile = false }) {
   return (
     <span className={`BoonTitle ${rarity}Text ${textPositon}Title`}>
       {text.map((word, ind) => (
         <span key={`${ind}-${word}`}>
-          <span className="TitleFirstLetter">{word.substring(0, 1)}</span>
-          <span className="TitleOtherLetters">
+          <span
+            className={
+              !isMobile ? "TitleFirstLetter" : "MobileTitleFirstLetter"
+            }
+          >
+            {word.substring(0, 1)}
+          </span>
+          <span
+            className={
+              !isMobile ? "TitleOtherLetters" : "MobileTitleOtherLetters"
+            }
+          >
             {word.substring(1, word.length)}
           </span>
           &nbsp;
@@ -41,24 +51,39 @@ function getRarityText(rarity, displayType) {
 /*
 displayType should be one of: Boon, Weapon, Keepsake
 */
-function BoonTitle({ boonTitle, rarity, displayType = "Boon" }) {
+function BoonTitle({
+  boonTitle,
+  rarity,
+  displayType = "Boon",
+  isMobile = false,
+}) {
   const words = boonTitle.split(" ");
 
   return (
     <>
       <div>
-        <TitleText text={words} rarity={rarity} textPositon="Left" />
-        {displayType === "Keepsake" ? (
-          <img
-            className="RarityImage RightTitle"
-            src={`img/KeepsakeFrame${rarity}.png`}
-          />
+        <TitleText
+          text={words}
+          rarity={rarity}
+          textPositon="Left"
+          isMobile={isMobile}
+        />
+        {!isMobile ? (
+          displayType === "Keepsake" ? (
+            <img
+              className="RarityImage RightTitle"
+              src={`img/KeepsakeFrame${rarity}.png`}
+            />
+          ) : (
+            <TitleText
+              text={[getRarityText(rarity, displayType)]}
+              rarity={rarity}
+              textPositon="Right"
+              isMobile={isMobile}
+            />
+          )
         ) : (
-          <TitleText
-            text={[getRarityText(rarity, displayType)]}
-            rarity={rarity}
-            textPositon="Right"
-          />
+          ""
         )}
       </div>
       <div style={{ clear: "both" }}></div>

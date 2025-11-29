@@ -5,7 +5,6 @@ import { useImmerReducer } from "use-immer";
 
 import "../css/App.css";
 import RunPanel from "./run/RunPanel";
-import MobileRunPanel from "./run/MobileRunPanel";
 import PinPanel from "./pins/PinPanel";
 import ArcanaPanel from "./arcana/ArcanaPanel";
 import VowPanel from "./vows/VowPanel";
@@ -331,24 +330,16 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
         )}
       </div>
       <div className="TabbedContent">
-        {activeTab === "runTab" &&
-          (!isMobile ? (
-            <RunPanel
-              allBoons={state.allBoons}
-              weaponData={state.weaponData}
-              familiarData={state.familiarData}
-              elementalData={state.elementalData}
-              extraData={state.extraData}
-            />
-          ) : (
-            <MobileRunPanel
-              allBoons={state.allBoons}
-              weaponData={state.weaponData}
-              familiarData={state.familiarData}
-              elementalData={state.elementalData}
-              extraData={state.extraData}
-            />
-          ))}
+        {activeTab === "runTab" && (
+          <RunPanel
+            allBoons={state.allBoons}
+            weaponData={state.weaponData}
+            familiarData={state.familiarData}
+            elementalData={state.elementalData}
+            extraData={state.extraData}
+            isMobile={isMobile}
+          />
+        )}
         {activeTab === "arcanaTab" && (
           <ArcanaPanel arcanaData={state.arcanaData} />
         )}

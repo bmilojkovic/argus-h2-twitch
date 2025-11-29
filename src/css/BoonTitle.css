@@ -50,8 +50,16 @@
   font-size: 2em;
 }
 
+.MobileTitleFirstLetter {
+  font-size: 1.5em;
+}
+
 .TitleOtherLetters {
   font-size: 1.5em;
+}
+
+.MobileOtherLetters {
+  font-size: 1em;
 }
 
 .RightTitle {

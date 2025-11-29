@@ -10,6 +10,7 @@ function RunPanel({
   familiarData,
   elementalData,
   extraData,
+  isMobile = false,
 }) {
   function isNullOrEmptyObject(obj) {
     // First, ensure the input is actually an object and not null or undefined
@@ -35,19 +36,24 @@ function RunPanel({
   }
 
   return (
-    <div className="RunPanel">
+    <div className={!isMobile ? "RunPanel" : "MobileRunPanel"}>
       <div className="GridContainer">
-        <img
-          src="img/main_background.png"
-          className="RunPanelBackgroundImage"
-        />
+        {!isMobile ? (
+          <img
+            src="img/main_background.png"
+            className="RunPanelBackgroundImage"
+          />
+        ) : (
+          ""
+        )}
         {isDataEmpty() ? <div className="EmptyDataHint"></div> : ""}
-        <ElementPanel elementalData={elementalData} />
+        <ElementPanel elementalData={elementalData} isMobile={isMobile} />
         {weaponData != null && weaponData.name != null ? (
           <BoonIcon
             boonDetails={weaponData}
             displayType="Weapon"
             extraClass="WeaponSlot"
+            isMobile={isMobile}
           />
         ) : (
           <div className="WeaponSlot" />
@@ -57,6 +63,7 @@ function RunPanel({
             boonDetails={familiarData}
             displayType="Familiar"
             extraClass="FamiliarSlot"
+            isMobile={isMobile}
           />
         ) : (
           <div className="FamiliarSlot" />
@@ -68,6 +75,7 @@ function RunPanel({
               : { codeName: "EmptyWeaponBoon", rarity: "" }
           }
           extraClass="AttackSlot"
+          isMobile={isMobile}
         />
         <BoonIcon
           boonDetails={
@@ -76,6 +84,7 @@ function RunPanel({
               : { codeName: "EmptySpecialBoon", rarity: "" }
           }
           extraClass="SpecialSlot"
+          isMobile={isMobile}
         />
         <BoonIcon
           boonDetails={
@@ -84,6 +93,7 @@ function RunPanel({
               : { codeName: "EmptyCastBoon", rarity: "" }
           }
           extraClass="CastSlot"
+          isMobile={isMobile}
         />
         <BoonIcon
           boonDetails={
@@ -92,6 +102,7 @@ function RunPanel({
               : { codeName: "EmptySprintBoon", rarity: "" }
           }
           extraClass="SprintSlot"
+          isMobile={isMobile}
         />
         <BoonIcon
           boonDetails={
@@ -100,14 +111,23 @@ function RunPanel({
               : { codeName: "EmptyManaBoon", rarity: "" }
           }
           extraClass="ManaSlot"
+          isMobile={isMobile}
         />
         {allBoons.otherBoons != null
           ? allBoons.otherBoons.map((boon, ind) => (
-              <BoonIcon key={boon.codeName + ind} boonDetails={boon} />
+              <BoonIcon
+                key={boon.codeName + ind}
+                boonDetails={boon}
+                isMobile={isMobile}
+              />
             ))
           : ""}
       </div>
-      {extraData != null ? <ExtraPanel extraData={extraData} /> : ""}
+      {extraData != null ? (
+        <ExtraPanel extraData={extraData} isMobile={isMobile} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
