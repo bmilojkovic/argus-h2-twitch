@@ -99,7 +99,7 @@ function BoonIcon({
         }
       : {
           //mobile parameters
-          placement: "left-start",
+          placement: "top",
           modifiers: [
             {
               name: "offset",
@@ -114,7 +114,7 @@ function BoonIcon({
             {
               name: "flip",
               options: {
-                fallbackPlacements: ["bottom", "top"],
+                fallbackPlacements: ["bottom"],
               },
             },
           ],

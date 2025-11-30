@@ -101,7 +101,11 @@
 
 .MobileDetailText {
   position: absolute;
-  top: 60px;
+  top: 50px;
   font-size: 0.8em;
   margin-right: 10px;
+}
+
+.MobileDetailText ul {
+  padding-inline-start: 10px;
 }
