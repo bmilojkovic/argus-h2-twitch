@@ -261,8 +261,8 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
   };
 
   return (
-    <div className="App">
-      <div className="AppBackground" />
+    <div className={!isMobile ? "App" : "MobileApp"}>
+      <div className={!isMobile ? "AppBackground" : "MobileAppBackground"} />
       <div className={"TabList " + (isMobile ? "MobileTabList" : "")}>
         <div
           className={

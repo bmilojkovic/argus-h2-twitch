@@ -6,6 +6,6 @@ import { testingData } from "./util";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App isMobile={true} />
+    <App isMobile={true} isDashboard={true} dashboardInfo={testingData} />
   </React.StrictMode>
 );

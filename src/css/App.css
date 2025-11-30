@@ -13,9 +13,26 @@
   height: 768px;
 }
 
+.MobileApp {
+  text-align: center;
+  position: relative;
+
+  width: 350px;
+}
+
 .AppBackground {
   width: 1024px;
   height: 768px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: -3;
+}
+
+.MobileAppBackground {
+  width: 350px;
 
   position: absolute;
   top: 0;
@@ -47,11 +64,11 @@
   left: 0;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: repeat(10, 100px);
+  grid-template-columns: repeat(4, 100px);
 }
 
 .MobileTabList {
-  grid-template-columns: repeat(10, 75px);
+  grid-template-columns: repeat(4, 75px);
 }
 
 .TabbedContent {
