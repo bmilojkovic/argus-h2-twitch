@@ -11,6 +11,8 @@ import VowPanel from "./vows/VowPanel";
 
 import ArgusReducer from "./Reducer";
 
+import { argusBackend } from "../util";
+
 /*
   This is the main entry point for the application. Here is an outline of the app structure:
   -This component handles listening to broadcasts from our backend, assembles the messages and
@@ -242,6 +244,26 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
     addMessagePart(nonce, partInd, totalParts, partData);
   }
 
+  async function attemptFetchState(auth) {
+    try {
+      const response = await fetch(argusBackend + "/get_streamer_run_data", {
+        method: "GET",
+        headers: {
+          "x-extension-jwt": auth.token,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.text();
+        updateState(data);
+      } else {
+        console.log("Error in initial fetch: " + response.status);
+      }
+    } catch (error) {
+      console.log("Exception in initial fetch: " + error);
+    }
+  }
+
   /*
     subscribing to updates from our backend
   */
@@ -249,6 +271,7 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
     if (!isDashboard) {
       var twitch = window.Twitch.ext;
       twitch.listen("broadcast", twitchListen);
+      window.Twitch.ext.onAuthorized(attemptFetchState);
     } else {
       if (dashboardInfo != null) {
         updateState(JSON.stringify(dashboardInfo));
