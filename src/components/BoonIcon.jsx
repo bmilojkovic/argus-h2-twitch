@@ -87,7 +87,7 @@ function BoonIcon({
             },
             {
               name: "preventOverflow",
-              options: { padding: 100 },
+              options: { padding: 10, boundary: viewRef.current },
             },
             {
               name: "flip",
@@ -99,7 +99,7 @@ function BoonIcon({
         }
       : {
           //mobile parameters
-          placement: "top",
+          placement: "bottom",
           modifiers: [
             {
               name: "offset",
@@ -114,7 +114,7 @@ function BoonIcon({
             {
               name: "flip",
               options: {
-                fallbackPlacements: ["bottom"],
+                fallbackPlacements: ["top"],
               },
             },
           ],
@@ -182,7 +182,7 @@ function BoonIcon({
         <div
           ref={setPopperElement}
           style={styles.popper}
-          className={"PopperElement " + isMobile ? "MobilePopperElement" : ""}
+          className={"PopperElement " + (isMobile ? "MobilePopperElement" : "")}
           {...attributes.popper}
         >
           <BoonDetail

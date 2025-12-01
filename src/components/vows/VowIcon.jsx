@@ -65,7 +65,7 @@ function VowIcon({
             },
             {
               name: "preventOverflow",
-              options: { padding: 100 },
+              options: { padding: 10, boundary: viewRef.current },
             },
             {
               name: "flip",
@@ -77,7 +77,7 @@ function VowIcon({
         }
       : {
           //mobile parameters
-          placement: "top",
+          placement: "bottom",
           modifiers: [
             {
               name: "offset",
@@ -92,7 +92,7 @@ function VowIcon({
             {
               name: "flip",
               options: {
-                fallbackPlacements: ["bottom"],
+                fallbackPlacements: ["top"],
               },
             },
           ],
@@ -136,7 +136,7 @@ function VowIcon({
           (isMobile ? " MobileVowIcon" : "")
         }
       >
-        <span class="VowName">{vowDetails.shortName}</span>
+        <span className="VowName">{vowDetails.shortName}</span>
         <SmartImage
           src={`img/${vowDetails.codeName}.png`}
           fallback="img/DefaultBoon.png"

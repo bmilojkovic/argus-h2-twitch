@@ -82,8 +82,8 @@ function PinPanel({ pinBoons, isMobile = false }) {
   const viewRef = useRef(null);
 
   return (
-    <div ref={viewRef} className={!isMobile ? "PinPanel" : "MobilePinPanel"}>
-      <div className="GridContainer">
+    <div className={!isMobile ? "PinPanel" : "MobilePinPanel"}>
+      <div ref={viewRef} className="GridContainer">
         {!isMobile ? (
           <>
             <p className="PinPanelTitle">
@@ -105,6 +105,7 @@ function PinPanel({ pinBoons, isMobile = false }) {
                 <BoonIcon
                   key={boon.codeName}
                   boonDetails={boon}
+                  viewRef={viewRef}
                   extraClass={`PinnedBoon${ind + 1}`}
                 />
               ))}{" "}
@@ -112,6 +113,7 @@ function PinPanel({ pinBoons, isMobile = false }) {
                 <RequirementsPanel
                   key={`Requirements${boon2.codeName}`}
                   boonDetails={boon2}
+                  viewRef={viewRef}
                   gridClass={`BoonRequirements${ind2 + 1}`}
                 />
               ))}

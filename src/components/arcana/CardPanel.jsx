@@ -57,9 +57,7 @@ function CardPanel({ cardDetails, viewRef, isMobile = false }) {
             },
             {
               name: "preventOverflow",
-              options: {
-                altBoundary: true,
-              },
+              options: { padding: 10, boundary: viewRef.current },
             },
             {
               name: "flip",
@@ -71,7 +69,7 @@ function CardPanel({ cardDetails, viewRef, isMobile = false }) {
         }
       : {
           //mobile parameters
-          placement: "top",
+          placement: "bottom",
           modifiers: [
             {
               name: "offset",
@@ -86,7 +84,7 @@ function CardPanel({ cardDetails, viewRef, isMobile = false }) {
             {
               name: "flip",
               options: {
-                fallbackPlacements: ["bottom"],
+                fallbackPlacements: ["top"],
               },
             },
           ],
@@ -124,7 +122,7 @@ function CardPanel({ cardDetails, viewRef, isMobile = false }) {
         <div
           ref={setPopperElement}
           style={styles.popper}
-          className={"PopperElement " + isMobile ? "MobilePopperElement" : ""}
+          className={"PopperElement " + (isMobile ? "MobilePopperElement" : "")}
           {...attributes.popper}
         >
           <CardDetail cardDetails={cardDetails} isMobile={isMobile} />
