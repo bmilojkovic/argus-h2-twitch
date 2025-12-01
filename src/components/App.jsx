@@ -255,7 +255,9 @@ function App({ isDashboard = false, dashboardInfo = null, isMobile = false }) {
 
       if (response.ok) {
         const data = await response.text();
-        updateState(data);
+        if (data !== "NO_DATA") {
+          updateState(data);
+        }
       } else {
         console.log("Error in initial fetch: " + response.status);
       }
