@@ -10,6 +10,10 @@
   font-weight: bold;
 }
 
+body {
+  background-color: black;
+}
+
 .DashboardGrid {
   position: absolute;
   top: 0;
@@ -18,12 +22,10 @@
   height: 100%;
   background-color: black;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .DashboardItem {
-  transform: scale(0.8);
-  transform-origin: top left;
 }
 
 .StreamerProfilePicture {
